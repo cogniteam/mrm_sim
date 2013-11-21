@@ -1,4 +1,4 @@
 mrm_sim
 =======
 
-Gazebo simulation of mr_teleopration
+Example gazebo simulation environment for mr_teleoperation
