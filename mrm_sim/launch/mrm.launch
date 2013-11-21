@@ -1,0 +1,19 @@
+<launch>
+  
+  	<!-- Parameters ====================================================== -->
+
+	<arg name="robots_count" default="10" />
+	<arg name="laser_forward_offset" default="0.35" />
+
+	<param name="/robots_count" value="$(arg robots_count)" />
+	<param name="/use_sim_time" value="true" />
+
+	<!-- World file generation =========================================== -->
+	<node pkg="xacro" type="xacro" name="wg" args="$(find mrm_sim)/models/pioneer_model.xacro robots_count:=$(arg robots_count) laser_forward_offset:=$(arg laser_forward_offset) -o $(find mrm_sim)/worlds/mrm.world"/>
+
+	<!-- Gazebo simulation =============================================== -->
+	<node pkg="gazebo_ros" type="gzserver" args="$(find mrm_sim)/worlds/mrm.world" name="gazebo_sim_server" required="true" />
+	<node pkg="gazebo_ros" type="gzclient" name="gazebo_sim_client" />
+
+
+</launch>

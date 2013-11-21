@@ -1,0 +1,9 @@
+<launch>
+
+	<param name="robot_description" command="$(find xacro)/xacro.py $(find mrm_sim)/models/pioneer_model.xacro" />
+
+    <node name="spawn_model" pkg="gazebo_ros" type="spawn_model" 
+    	args="-urdf -param /robot_description -model pioneer3at" 
+    	respawn="false" output="screen" />
+
+</launch>
