@@ -103,7 +103,7 @@
         <collision name="collision">
           <geometry>
             <box>
-              <size>0.501 0.2 0.19</size>
+              <size>0.185 0.1 0.03</size>
             </box>
           </geometry>
           <max_contacts>10</max_contacts>
@@ -119,9 +119,12 @@
         </collision>
         <visual name="visual">
           <geometry>
-            <mesh>
-              <uri>/home/misha/workspaces/hamster/src/mrm_sim/mrm_sim/meshes/chassis.dae</uri>
-            </mesh>
+            <!--	            <mesh>
+	              <uri>$(find mrm_sim)/meshes/chassis.dae</uri>
+	            </mesh>-->
+            <box>
+              <size>0.185 0.1 0.03</size>
+            </box>
           </geometry>
         </visual>
         <velocity_decay>
@@ -133,12 +136,12 @@
         <gravity>1</gravity>
       </link>
       <link name="right_front_wheel">
-        <pose>0.125 -0.1005 -0.06 1.5707 -0 0</pose>
+        <pose>0.083 -0.0725 -0.005 1.5707 -0 0</pose>
         <collision name="collision">
           <geometry>
             <cylinder>
-              <radius>0.11</radius>
-              <length>0.075</length>
+              <radius>0.035</radius>
+              <length>0.035</length>
             </cylinder>
           </geometry>
           <surface>
@@ -160,6 +163,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
+              <scale>0.318 0.318 0.35</scale>
               <uri>/home/misha/workspaces/hamster/src/mrm_sim/mrm_sim/meshes/wheel.dae</uri>
             </mesh>
           </geometry>
@@ -184,12 +188,12 @@
         <gravity>1</gravity>
       </link>
       <link name="left_front_wheel">
-        <pose>0.125 0.1005 -0.06 1.5707 -0 0</pose>
+        <pose>0.083 0.0725 -0.005 1.5707 -0 0</pose>
         <collision name="collision">
           <geometry>
             <cylinder>
-              <radius>0.11</radius>
-              <length>0.075</length>
+              <radius>0.035</radius>
+              <length>0.035</length>
             </cylinder>
           </geometry>
           <surface>
@@ -211,6 +215,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
+              <scale>0.318 0.318 0.35</scale>
               <uri>/home/misha/workspaces/hamster/src/mrm_sim/mrm_sim/meshes/wheel.dae</uri>
             </mesh>
           </geometry>
@@ -235,12 +240,12 @@
         <gravity>1</gravity>
       </link>
       <link name="right_rear_wheel">
-        <pose>-0.125 -0.1005 -0.06 1.5707 -0 0</pose>
+        <pose>-0.083 -0.0725 -0.005 1.5707 -0 0</pose>
         <collision name="collision">
           <geometry>
             <cylinder>
-              <radius>0.11</radius>
-              <length>0.075</length>
+              <radius>0.035</radius>
+              <length>0.035</length>
             </cylinder>
           </geometry>
           <surface>
@@ -262,6 +267,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
+              <scale>0.318 0.318 0.35</scale>
               <uri>/home/misha/workspaces/hamster/src/mrm_sim/mrm_sim/meshes/wheel.dae</uri>
             </mesh>
           </geometry>
@@ -286,12 +292,12 @@
         <gravity>1</gravity>
       </link>
       <link name="left_rear_wheel">
-        <pose>-0.125 0.1005 -0.06 1.5707 -0 0</pose>
+        <pose>-0.083 0.0725 -0.005 1.5707 -0 0</pose>
         <collision name="collision">
           <geometry>
             <cylinder>
-              <radius>0.11</radius>
-              <length>0.075</length>
+              <radius>0.035</radius>
+              <length>0.035</length>
             </cylinder>
           </geometry>
           <surface>
@@ -313,7 +319,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
-              <scale>1 1 1</scale>
+              <scale>0.318 0.318 0.35</scale>
               <uri>/home/misha/workspaces/hamster/src/mrm_sim/mrm_sim/meshes/wheel.dae</uri>
             </mesh>
           </geometry>
@@ -589,7 +595,7 @@
         <collision name="collision">
           <geometry>
             <box>
-              <size>0.501 0.2 0.19</size>
+              <size>0.185 0.1 0.03</size>
             </box>
           </geometry>
           <max_contacts>10</max_contacts>
@@ -605,9 +611,12 @@
         </collision>
         <visual name="visual">
           <geometry>
-            <mesh>
-              <uri>/home/misha/workspaces/hamster/src/mrm_sim/mrm_sim/meshes/chassis.dae</uri>
-            </mesh>
+            <!--	            <mesh>
+	              <uri>$(find mrm_sim)/meshes/chassis.dae</uri>
+	            </mesh>-->
+            <box>
+              <size>0.185 0.1 0.03</size>
+            </box>
           </geometry>
         </visual>
         <velocity_decay>
@@ -619,12 +628,12 @@
         <gravity>1</gravity>
       </link>
       <link name="right_front_wheel">
-        <pose>0.125 -0.1005 -0.06 1.5707 -0 0</pose>
+        <pose>0.083 -0.0725 -0.005 1.5707 -0 0</pose>
         <collision name="collision">
           <geometry>
             <cylinder>
-              <radius>0.11</radius>
-              <length>0.075</length>
+              <radius>0.035</radius>
+              <length>0.035</length>
             </cylinder>
           </geometry>
           <surface>
@@ -646,6 +655,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
+              <scale>0.318 0.318 0.35</scale>
               <uri>/home/misha/workspaces/hamster/src/mrm_sim/mrm_sim/meshes/wheel.dae</uri>
             </mesh>
           </geometry>
@@ -670,12 +680,12 @@
         <gravity>1</gravity>
       </link>
       <link name="left_front_wheel">
-        <pose>0.125 0.1005 -0.06 1.5707 -0 0</pose>
+        <pose>0.083 0.0725 -0.005 1.5707 -0 0</pose>
         <collision name="collision">
           <geometry>
             <cylinder>
-              <radius>0.11</radius>
-              <length>0.075</length>
+              <radius>0.035</radius>
+              <length>0.035</length>
             </cylinder>
           </geometry>
           <surface>
@@ -697,6 +707,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
+              <scale>0.318 0.318 0.35</scale>
               <uri>/home/misha/workspaces/hamster/src/mrm_sim/mrm_sim/meshes/wheel.dae</uri>
             </mesh>
           </geometry>
@@ -721,12 +732,12 @@
         <gravity>1</gravity>
       </link>
       <link name="right_rear_wheel">
-        <pose>-0.125 -0.1005 -0.06 1.5707 -0 0</pose>
+        <pose>-0.083 -0.0725 -0.005 1.5707 -0 0</pose>
         <collision name="collision">
           <geometry>
             <cylinder>
-              <radius>0.11</radius>
-              <length>0.075</length>
+              <radius>0.035</radius>
+              <length>0.035</length>
             </cylinder>
           </geometry>
           <surface>
@@ -748,6 +759,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
+              <scale>0.318 0.318 0.35</scale>
               <uri>/home/misha/workspaces/hamster/src/mrm_sim/mrm_sim/meshes/wheel.dae</uri>
             </mesh>
           </geometry>
@@ -772,12 +784,12 @@
         <gravity>1</gravity>
       </link>
       <link name="left_rear_wheel">
-        <pose>-0.125 0.1005 -0.06 1.5707 -0 0</pose>
+        <pose>-0.083 0.0725 -0.005 1.5707 -0 0</pose>
         <collision name="collision">
           <geometry>
             <cylinder>
-              <radius>0.11</radius>
-              <length>0.075</length>
+              <radius>0.035</radius>
+              <length>0.035</length>
             </cylinder>
           </geometry>
           <surface>
@@ -799,7 +811,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
-              <scale>1 1 1</scale>
+              <scale>0.318 0.318 0.35</scale>
               <uri>/home/misha/workspaces/hamster/src/mrm_sim/mrm_sim/meshes/wheel.dae</uri>
             </mesh>
           </geometry>
@@ -1075,7 +1087,7 @@
         <collision name="collision">
           <geometry>
             <box>
-              <size>0.501 0.2 0.19</size>
+              <size>0.185 0.1 0.03</size>
             </box>
           </geometry>
           <max_contacts>10</max_contacts>
@@ -1091,9 +1103,12 @@
         </collision>
         <visual name="visual">
           <geometry>
-            <mesh>
-              <uri>/home/misha/workspaces/hamster/src/mrm_sim/mrm_sim/meshes/chassis.dae</uri>
-            </mesh>
+            <!--	            <mesh>
+	              <uri>$(find mrm_sim)/meshes/chassis.dae</uri>
+	            </mesh>-->
+            <box>
+              <size>0.185 0.1 0.03</size>
+            </box>
           </geometry>
         </visual>
         <velocity_decay>
@@ -1105,12 +1120,12 @@
         <gravity>1</gravity>
       </link>
       <link name="right_front_wheel">
-        <pose>0.125 -0.1005 -0.06 1.5707 -0 0</pose>
+        <pose>0.083 -0.0725 -0.005 1.5707 -0 0</pose>
         <collision name="collision">
           <geometry>
             <cylinder>
-              <radius>0.11</radius>
-              <length>0.075</length>
+              <radius>0.035</radius>
+              <length>0.035</length>
             </cylinder>
           </geometry>
           <surface>
@@ -1132,6 +1147,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
+              <scale>0.318 0.318 0.35</scale>
               <uri>/home/misha/workspaces/hamster/src/mrm_sim/mrm_sim/meshes/wheel.dae</uri>
             </mesh>
           </geometry>
@@ -1156,12 +1172,12 @@
         <gravity>1</gravity>
       </link>
       <link name="left_front_wheel">
-        <pose>0.125 0.1005 -0.06 1.5707 -0 0</pose>
+        <pose>0.083 0.0725 -0.005 1.5707 -0 0</pose>
         <collision name="collision">
           <geometry>
             <cylinder>
-              <radius>0.11</radius>
-              <length>0.075</length>
+              <radius>0.035</radius>
+              <length>0.035</length>
             </cylinder>
           </geometry>
           <surface>
@@ -1183,6 +1199,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
+              <scale>0.318 0.318 0.35</scale>
               <uri>/home/misha/workspaces/hamster/src/mrm_sim/mrm_sim/meshes/wheel.dae</uri>
             </mesh>
           </geometry>
@@ -1207,12 +1224,12 @@
         <gravity>1</gravity>
       </link>
       <link name="right_rear_wheel">
-        <pose>-0.125 -0.1005 -0.06 1.5707 -0 0</pose>
+        <pose>-0.083 -0.0725 -0.005 1.5707 -0 0</pose>
         <collision name="collision">
           <geometry>
             <cylinder>
-              <radius>0.11</radius>
-              <length>0.075</length>
+              <radius>0.035</radius>
+              <length>0.035</length>
             </cylinder>
           </geometry>
           <surface>
@@ -1234,6 +1251,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
+              <scale>0.318 0.318 0.35</scale>
               <uri>/home/misha/workspaces/hamster/src/mrm_sim/mrm_sim/meshes/wheel.dae</uri>
             </mesh>
           </geometry>
@@ -1258,12 +1276,12 @@
         <gravity>1</gravity>
       </link>
       <link name="left_rear_wheel">
-        <pose>-0.125 0.1005 -0.06 1.5707 -0 0</pose>
+        <pose>-0.083 0.0725 -0.005 1.5707 -0 0</pose>
         <collision name="collision">
           <geometry>
             <cylinder>
-              <radius>0.11</radius>
-              <length>0.075</length>
+              <radius>0.035</radius>
+              <length>0.035</length>
             </cylinder>
           </geometry>
           <surface>
@@ -1285,7 +1303,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
-              <scale>1 1 1</scale>
+              <scale>0.318 0.318 0.35</scale>
               <uri>/home/misha/workspaces/hamster/src/mrm_sim/mrm_sim/meshes/wheel.dae</uri>
             </mesh>
           </geometry>
@@ -1561,7 +1579,7 @@
         <collision name="collision">
           <geometry>
             <box>
-              <size>0.501 0.2 0.19</size>
+              <size>0.185 0.1 0.03</size>
             </box>
           </geometry>
           <max_contacts>10</max_contacts>
@@ -1577,9 +1595,12 @@
         </collision>
         <visual name="visual">
           <geometry>
-            <mesh>
-              <uri>/home/misha/workspaces/hamster/src/mrm_sim/mrm_sim/meshes/chassis.dae</uri>
-            </mesh>
+            <!--	            <mesh>
+	              <uri>$(find mrm_sim)/meshes/chassis.dae</uri>
+	            </mesh>-->
+            <box>
+              <size>0.185 0.1 0.03</size>
+            </box>
           </geometry>
         </visual>
         <velocity_decay>
@@ -1591,12 +1612,12 @@
         <gravity>1</gravity>
       </link>
       <link name="right_front_wheel">
-        <pose>0.125 -0.1005 -0.06 1.5707 -0 0</pose>
+        <pose>0.083 -0.0725 -0.005 1.5707 -0 0</pose>
         <collision name="collision">
           <geometry>
             <cylinder>
-              <radius>0.11</radius>
-              <length>0.075</length>
+              <radius>0.035</radius>
+              <length>0.035</length>
             </cylinder>
           </geometry>
           <surface>
@@ -1618,6 +1639,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
+              <scale>0.318 0.318 0.35</scale>
               <uri>/home/misha/workspaces/hamster/src/mrm_sim/mrm_sim/meshes/wheel.dae</uri>
             </mesh>
           </geometry>
@@ -1642,12 +1664,12 @@
         <gravity>1</gravity>
       </link>
       <link name="left_front_wheel">
-        <pose>0.125 0.1005 -0.06 1.5707 -0 0</pose>
+        <pose>0.083 0.0725 -0.005 1.5707 -0 0</pose>
         <collision name="collision">
           <geometry>
             <cylinder>
-              <radius>0.11</radius>
-              <length>0.075</length>
+              <radius>0.035</radius>
+              <length>0.035</length>
             </cylinder>
           </geometry>
           <surface>
@@ -1669,6 +1691,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
+              <scale>0.318 0.318 0.35</scale>
               <uri>/home/misha/workspaces/hamster/src/mrm_sim/mrm_sim/meshes/wheel.dae</uri>
             </mesh>
           </geometry>
@@ -1693,12 +1716,12 @@
         <gravity>1</gravity>
       </link>
       <link name="right_rear_wheel">
-        <pose>-0.125 -0.1005 -0.06 1.5707 -0 0</pose>
+        <pose>-0.083 -0.0725 -0.005 1.5707 -0 0</pose>
         <collision name="collision">
           <geometry>
             <cylinder>
-              <radius>0.11</radius>
-              <length>0.075</length>
+              <radius>0.035</radius>
+              <length>0.035</length>
             </cylinder>
           </geometry>
           <surface>
@@ -1720,6 +1743,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
+              <scale>0.318 0.318 0.35</scale>
               <uri>/home/misha/workspaces/hamster/src/mrm_sim/mrm_sim/meshes/wheel.dae</uri>
             </mesh>
           </geometry>
@@ -1744,12 +1768,12 @@
         <gravity>1</gravity>
       </link>
       <link name="left_rear_wheel">
-        <pose>-0.125 0.1005 -0.06 1.5707 -0 0</pose>
+        <pose>-0.083 0.0725 -0.005 1.5707 -0 0</pose>
         <collision name="collision">
           <geometry>
             <cylinder>
-              <radius>0.11</radius>
-              <length>0.075</length>
+              <radius>0.035</radius>
+              <length>0.035</length>
             </cylinder>
           </geometry>
           <surface>
@@ -1771,7 +1795,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
-              <scale>1 1 1</scale>
+              <scale>0.318 0.318 0.35</scale>
               <uri>/home/misha/workspaces/hamster/src/mrm_sim/mrm_sim/meshes/wheel.dae</uri>
             </mesh>
           </geometry>
@@ -2047,7 +2071,7 @@
         <collision name="collision">
           <geometry>
             <box>
-              <size>0.501 0.2 0.19</size>
+              <size>0.185 0.1 0.03</size>
             </box>
           </geometry>
           <max_contacts>10</max_contacts>
@@ -2063,9 +2087,12 @@
         </collision>
         <visual name="visual">
           <geometry>
-            <mesh>
-              <uri>/home/misha/workspaces/hamster/src/mrm_sim/mrm_sim/meshes/chassis.dae</uri>
-            </mesh>
+            <!--	            <mesh>
+	              <uri>$(find mrm_sim)/meshes/chassis.dae</uri>
+	            </mesh>-->
+            <box>
+              <size>0.185 0.1 0.03</size>
+            </box>
           </geometry>
         </visual>
         <velocity_decay>
@@ -2077,12 +2104,12 @@
         <gravity>1</gravity>
       </link>
       <link name="right_front_wheel">
-        <pose>0.125 -0.1005 -0.06 1.5707 -0 0</pose>
+        <pose>0.083 -0.0725 -0.005 1.5707 -0 0</pose>
         <collision name="collision">
           <geometry>
             <cylinder>
-              <radius>0.11</radius>
-              <length>0.075</length>
+              <radius>0.035</radius>
+              <length>0.035</length>
             </cylinder>
           </geometry>
           <surface>
@@ -2104,6 +2131,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
+              <scale>0.318 0.318 0.35</scale>
               <uri>/home/misha/workspaces/hamster/src/mrm_sim/mrm_sim/meshes/wheel.dae</uri>
             </mesh>
           </geometry>
@@ -2128,12 +2156,12 @@
         <gravity>1</gravity>
       </link>
       <link name="left_front_wheel">
-        <pose>0.125 0.1005 -0.06 1.5707 -0 0</pose>
+        <pose>0.083 0.0725 -0.005 1.5707 -0 0</pose>
         <collision name="collision">
           <geometry>
             <cylinder>
-              <radius>0.11</radius>
-              <length>0.075</length>
+              <radius>0.035</radius>
+              <length>0.035</length>
             </cylinder>
           </geometry>
           <surface>
@@ -2155,6 +2183,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
+              <scale>0.318 0.318 0.35</scale>
               <uri>/home/misha/workspaces/hamster/src/mrm_sim/mrm_sim/meshes/wheel.dae</uri>
             </mesh>
           </geometry>
@@ -2179,12 +2208,12 @@
         <gravity>1</gravity>
       </link>
       <link name="right_rear_wheel">
-        <pose>-0.125 -0.1005 -0.06 1.5707 -0 0</pose>
+        <pose>-0.083 -0.0725 -0.005 1.5707 -0 0</pose>
         <collision name="collision">
           <geometry>
             <cylinder>
-              <radius>0.11</radius>
-              <length>0.075</length>
+              <radius>0.035</radius>
+              <length>0.035</length>
             </cylinder>
           </geometry>
           <surface>
@@ -2206,6 +2235,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
+              <scale>0.318 0.318 0.35</scale>
               <uri>/home/misha/workspaces/hamster/src/mrm_sim/mrm_sim/meshes/wheel.dae</uri>
             </mesh>
           </geometry>
@@ -2230,12 +2260,12 @@
         <gravity>1</gravity>
       </link>
       <link name="left_rear_wheel">
-        <pose>-0.125 0.1005 -0.06 1.5707 -0 0</pose>
+        <pose>-0.083 0.0725 -0.005 1.5707 -0 0</pose>
         <collision name="collision">
           <geometry>
             <cylinder>
-              <radius>0.11</radius>
-              <length>0.075</length>
+              <radius>0.035</radius>
+              <length>0.035</length>
             </cylinder>
           </geometry>
           <surface>
@@ -2257,7 +2287,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
-              <scale>1 1 1</scale>
+              <scale>0.318 0.318 0.35</scale>
               <uri>/home/misha/workspaces/hamster/src/mrm_sim/mrm_sim/meshes/wheel.dae</uri>
             </mesh>
           </geometry>
@@ -2533,7 +2563,7 @@
         <collision name="collision">
           <geometry>
             <box>
-              <size>0.501 0.2 0.19</size>
+              <size>0.185 0.1 0.03</size>
             </box>
           </geometry>
           <max_contacts>10</max_contacts>
@@ -2549,9 +2579,12 @@
         </collision>
         <visual name="visual">
           <geometry>
-            <mesh>
-              <uri>/home/misha/workspaces/hamster/src/mrm_sim/mrm_sim/meshes/chassis.dae</uri>
-            </mesh>
+            <!--	            <mesh>
+	              <uri>$(find mrm_sim)/meshes/chassis.dae</uri>
+	            </mesh>-->
+            <box>
+              <size>0.185 0.1 0.03</size>
+            </box>
           </geometry>
         </visual>
         <velocity_decay>
@@ -2563,12 +2596,12 @@
         <gravity>1</gravity>
       </link>
       <link name="right_front_wheel">
-        <pose>0.125 -0.1005 -0.06 1.5707 -0 0</pose>
+        <pose>0.083 -0.0725 -0.005 1.5707 -0 0</pose>
         <collision name="collision">
           <geometry>
             <cylinder>
-              <radius>0.11</radius>
-              <length>0.075</length>
+              <radius>0.035</radius>
+              <length>0.035</length>
             </cylinder>
           </geometry>
           <surface>
@@ -2590,6 +2623,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
+              <scale>0.318 0.318 0.35</scale>
               <uri>/home/misha/workspaces/hamster/src/mrm_sim/mrm_sim/meshes/wheel.dae</uri>
             </mesh>
           </geometry>
@@ -2614,12 +2648,12 @@
         <gravity>1</gravity>
       </link>
       <link name="left_front_wheel">
-        <pose>0.125 0.1005 -0.06 1.5707 -0 0</pose>
+        <pose>0.083 0.0725 -0.005 1.5707 -0 0</pose>
         <collision name="collision">
           <geometry>
             <cylinder>
-              <radius>0.11</radius>
-              <length>0.075</length>
+              <radius>0.035</radius>
+              <length>0.035</length>
             </cylinder>
           </geometry>
           <surface>
@@ -2641,6 +2675,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
+              <scale>0.318 0.318 0.35</scale>
               <uri>/home/misha/workspaces/hamster/src/mrm_sim/mrm_sim/meshes/wheel.dae</uri>
             </mesh>
           </geometry>
@@ -2665,12 +2700,12 @@
         <gravity>1</gravity>
       </link>
       <link name="right_rear_wheel">
-        <pose>-0.125 -0.1005 -0.06 1.5707 -0 0</pose>
+        <pose>-0.083 -0.0725 -0.005 1.5707 -0 0</pose>
         <collision name="collision">
           <geometry>
             <cylinder>
-              <radius>0.11</radius>
-              <length>0.075</length>
+              <radius>0.035</radius>
+              <length>0.035</length>
             </cylinder>
           </geometry>
           <surface>
@@ -2692,6 +2727,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
+              <scale>0.318 0.318 0.35</scale>
               <uri>/home/misha/workspaces/hamster/src/mrm_sim/mrm_sim/meshes/wheel.dae</uri>
             </mesh>
           </geometry>
@@ -2716,12 +2752,12 @@
         <gravity>1</gravity>
       </link>
       <link name="left_rear_wheel">
-        <pose>-0.125 0.1005 -0.06 1.5707 -0 0</pose>
+        <pose>-0.083 0.0725 -0.005 1.5707 -0 0</pose>
         <collision name="collision">
           <geometry>
             <cylinder>
-              <radius>0.11</radius>
-              <length>0.075</length>
+              <radius>0.035</radius>
+              <length>0.035</length>
             </cylinder>
           </geometry>
           <surface>
@@ -2743,7 +2779,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
-              <scale>1 1 1</scale>
+              <scale>0.318 0.318 0.35</scale>
               <uri>/home/misha/workspaces/hamster/src/mrm_sim/mrm_sim/meshes/wheel.dae</uri>
             </mesh>
           </geometry>
@@ -3019,7 +3055,7 @@
         <collision name="collision">
           <geometry>
             <box>
-              <size>0.501 0.2 0.19</size>
+              <size>0.185 0.1 0.03</size>
             </box>
           </geometry>
           <max_contacts>10</max_contacts>
@@ -3035,9 +3071,12 @@
         </collision>
         <visual name="visual">
           <geometry>
-            <mesh>
-              <uri>/home/misha/workspaces/hamster/src/mrm_sim/mrm_sim/meshes/chassis.dae</uri>
-            </mesh>
+            <!--	            <mesh>
+	              <uri>$(find mrm_sim)/meshes/chassis.dae</uri>
+	            </mesh>-->
+            <box>
+              <size>0.185 0.1 0.03</size>
+            </box>
           </geometry>
         </visual>
         <velocity_decay>
@@ -3049,12 +3088,12 @@
         <gravity>1</gravity>
       </link>
       <link name="right_front_wheel">
-        <pose>0.125 -0.1005 -0.06 1.5707 -0 0</pose>
+        <pose>0.083 -0.0725 -0.005 1.5707 -0 0</pose>
         <collision name="collision">
           <geometry>
             <cylinder>
-              <radius>0.11</radius>
-              <length>0.075</length>
+              <radius>0.035</radius>
+              <length>0.035</length>
             </cylinder>
           </geometry>
           <surface>
@@ -3076,6 +3115,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
+              <scale>0.318 0.318 0.35</scale>
               <uri>/home/misha/workspaces/hamster/src/mrm_sim/mrm_sim/meshes/wheel.dae</uri>
             </mesh>
           </geometry>
@@ -3100,12 +3140,12 @@
         <gravity>1</gravity>
       </link>
       <link name="left_front_wheel">
-        <pose>0.125 0.1005 -0.06 1.5707 -0 0</pose>
+        <pose>0.083 0.0725 -0.005 1.5707 -0 0</pose>
         <collision name="collision">
           <geometry>
             <cylinder>
-              <radius>0.11</radius>
-              <length>0.075</length>
+              <radius>0.035</radius>
+              <length>0.035</length>
             </cylinder>
           </geometry>
           <surface>
@@ -3127,6 +3167,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
+              <scale>0.318 0.318 0.35</scale>
               <uri>/home/misha/workspaces/hamster/src/mrm_sim/mrm_sim/meshes/wheel.dae</uri>
             </mesh>
           </geometry>
@@ -3151,12 +3192,12 @@
         <gravity>1</gravity>
       </link>
       <link name="right_rear_wheel">
-        <pose>-0.125 -0.1005 -0.06 1.5707 -0 0</pose>
+        <pose>-0.083 -0.0725 -0.005 1.5707 -0 0</pose>
         <collision name="collision">
           <geometry>
             <cylinder>
-              <radius>0.11</radius>
-              <length>0.075</length>
+              <radius>0.035</radius>
+              <length>0.035</length>
             </cylinder>
           </geometry>
           <surface>
@@ -3178,6 +3219,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
+              <scale>0.318 0.318 0.35</scale>
               <uri>/home/misha/workspaces/hamster/src/mrm_sim/mrm_sim/meshes/wheel.dae</uri>
             </mesh>
           </geometry>
@@ -3202,12 +3244,12 @@
         <gravity>1</gravity>
       </link>
       <link name="left_rear_wheel">
-        <pose>-0.125 0.1005 -0.06 1.5707 -0 0</pose>
+        <pose>-0.083 0.0725 -0.005 1.5707 -0 0</pose>
         <collision name="collision">
           <geometry>
             <cylinder>
-              <radius>0.11</radius>
-              <length>0.075</length>
+              <radius>0.035</radius>
+              <length>0.035</length>
             </cylinder>
           </geometry>
           <surface>
@@ -3229,7 +3271,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
-              <scale>1 1 1</scale>
+              <scale>0.318 0.318 0.35</scale>
               <uri>/home/misha/workspaces/hamster/src/mrm_sim/mrm_sim/meshes/wheel.dae</uri>
             </mesh>
           </geometry>
@@ -3505,7 +3547,7 @@
         <collision name="collision">
           <geometry>
             <box>
-              <size>0.501 0.2 0.19</size>
+              <size>0.185 0.1 0.03</size>
             </box>
           </geometry>
           <max_contacts>10</max_contacts>
@@ -3521,9 +3563,12 @@
         </collision>
         <visual name="visual">
           <geometry>
-            <mesh>
-              <uri>/home/misha/workspaces/hamster/src/mrm_sim/mrm_sim/meshes/chassis.dae</uri>
-            </mesh>
+            <!--	            <mesh>
+	              <uri>$(find mrm_sim)/meshes/chassis.dae</uri>
+	            </mesh>-->
+            <box>
+              <size>0.185 0.1 0.03</size>
+            </box>
           </geometry>
         </visual>
         <velocity_decay>
@@ -3535,12 +3580,12 @@
         <gravity>1</gravity>
       </link>
       <link name="right_front_wheel">
-        <pose>0.125 -0.1005 -0.06 1.5707 -0 0</pose>
+        <pose>0.083 -0.0725 -0.005 1.5707 -0 0</pose>
         <collision name="collision">
           <geometry>
             <cylinder>
-              <radius>0.11</radius>
-              <length>0.075</length>
+              <radius>0.035</radius>
+              <length>0.035</length>
             </cylinder>
           </geometry>
           <surface>
@@ -3562,6 +3607,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
+              <scale>0.318 0.318 0.35</scale>
               <uri>/home/misha/workspaces/hamster/src/mrm_sim/mrm_sim/meshes/wheel.dae</uri>
             </mesh>
           </geometry>
@@ -3586,12 +3632,12 @@
         <gravity>1</gravity>
       </link>
       <link name="left_front_wheel">
-        <pose>0.125 0.1005 -0.06 1.5707 -0 0</pose>
+        <pose>0.083 0.0725 -0.005 1.5707 -0 0</pose>
         <collision name="collision">
           <geometry>
             <cylinder>
-              <radius>0.11</radius>
-              <length>0.075</length>
+              <radius>0.035</radius>
+              <length>0.035</length>
             </cylinder>
           </geometry>
           <surface>
@@ -3613,6 +3659,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
+              <scale>0.318 0.318 0.35</scale>
               <uri>/home/misha/workspaces/hamster/src/mrm_sim/mrm_sim/meshes/wheel.dae</uri>
             </mesh>
           </geometry>
@@ -3637,12 +3684,12 @@
         <gravity>1</gravity>
       </link>
       <link name="right_rear_wheel">
-        <pose>-0.125 -0.1005 -0.06 1.5707 -0 0</pose>
+        <pose>-0.083 -0.0725 -0.005 1.5707 -0 0</pose>
         <collision name="collision">
           <geometry>
             <cylinder>
-              <radius>0.11</radius>
-              <length>0.075</length>
+              <radius>0.035</radius>
+              <length>0.035</length>
             </cylinder>
           </geometry>
           <surface>
@@ -3664,6 +3711,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
+              <scale>0.318 0.318 0.35</scale>
               <uri>/home/misha/workspaces/hamster/src/mrm_sim/mrm_sim/meshes/wheel.dae</uri>
             </mesh>
           </geometry>
@@ -3688,12 +3736,12 @@
         <gravity>1</gravity>
       </link>
       <link name="left_rear_wheel">
-        <pose>-0.125 0.1005 -0.06 1.5707 -0 0</pose>
+        <pose>-0.083 0.0725 -0.005 1.5707 -0 0</pose>
         <collision name="collision">
           <geometry>
             <cylinder>
-              <radius>0.11</radius>
-              <length>0.075</length>
+              <radius>0.035</radius>
+              <length>0.035</length>
             </cylinder>
           </geometry>
           <surface>
@@ -3715,7 +3763,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
-              <scale>1 1 1</scale>
+              <scale>0.318 0.318 0.35</scale>
               <uri>/home/misha/workspaces/hamster/src/mrm_sim/mrm_sim/meshes/wheel.dae</uri>
             </mesh>
           </geometry>
@@ -3991,7 +4039,7 @@
         <collision name="collision">
           <geometry>
             <box>
-              <size>0.501 0.2 0.19</size>
+              <size>0.185 0.1 0.03</size>
             </box>
           </geometry>
           <max_contacts>10</max_contacts>
@@ -4007,9 +4055,12 @@
         </collision>
         <visual name="visual">
           <geometry>
-            <mesh>
-              <uri>/home/misha/workspaces/hamster/src/mrm_sim/mrm_sim/meshes/chassis.dae</uri>
-            </mesh>
+            <!--	            <mesh>
+	              <uri>$(find mrm_sim)/meshes/chassis.dae</uri>
+	            </mesh>-->
+            <box>
+              <size>0.185 0.1 0.03</size>
+            </box>
           </geometry>
         </visual>
         <velocity_decay>
@@ -4021,12 +4072,12 @@
         <gravity>1</gravity>
       </link>
       <link name="right_front_wheel">
-        <pose>0.125 -0.1005 -0.06 1.5707 -0 0</pose>
+        <pose>0.083 -0.0725 -0.005 1.5707 -0 0</pose>
         <collision name="collision">
           <geometry>
             <cylinder>
-              <radius>0.11</radius>
-              <length>0.075</length>
+              <radius>0.035</radius>
+              <length>0.035</length>
             </cylinder>
           </geometry>
           <surface>
@@ -4048,6 +4099,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
+              <scale>0.318 0.318 0.35</scale>
               <uri>/home/misha/workspaces/hamster/src/mrm_sim/mrm_sim/meshes/wheel.dae</uri>
             </mesh>
           </geometry>
@@ -4072,12 +4124,12 @@
         <gravity>1</gravity>
       </link>
       <link name="left_front_wheel">
-        <pose>0.125 0.1005 -0.06 1.5707 -0 0</pose>
+        <pose>0.083 0.0725 -0.005 1.5707 -0 0</pose>
         <collision name="collision">
           <geometry>
             <cylinder>
-              <radius>0.11</radius>
-              <length>0.075</length>
+              <radius>0.035</radius>
+              <length>0.035</length>
             </cylinder>
           </geometry>
           <surface>
@@ -4099,6 +4151,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
+              <scale>0.318 0.318 0.35</scale>
               <uri>/home/misha/workspaces/hamster/src/mrm_sim/mrm_sim/meshes/wheel.dae</uri>
             </mesh>
           </geometry>
@@ -4123,12 +4176,12 @@
         <gravity>1</gravity>
       </link>
       <link name="right_rear_wheel">
-        <pose>-0.125 -0.1005 -0.06 1.5707 -0 0</pose>
+        <pose>-0.083 -0.0725 -0.005 1.5707 -0 0</pose>
         <collision name="collision">
           <geometry>
             <cylinder>
-              <radius>0.11</radius>
-              <length>0.075</length>
+              <radius>0.035</radius>
+              <length>0.035</length>
             </cylinder>
           </geometry>
           <surface>
@@ -4150,6 +4203,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
+              <scale>0.318 0.318 0.35</scale>
               <uri>/home/misha/workspaces/hamster/src/mrm_sim/mrm_sim/meshes/wheel.dae</uri>
             </mesh>
           </geometry>
@@ -4174,12 +4228,12 @@
         <gravity>1</gravity>
       </link>
       <link name="left_rear_wheel">
-        <pose>-0.125 0.1005 -0.06 1.5707 -0 0</pose>
+        <pose>-0.083 0.0725 -0.005 1.5707 -0 0</pose>
         <collision name="collision">
           <geometry>
             <cylinder>
-              <radius>0.11</radius>
-              <length>0.075</length>
+              <radius>0.035</radius>
+              <length>0.035</length>
             </cylinder>
           </geometry>
           <surface>
@@ -4201,7 +4255,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
-              <scale>1 1 1</scale>
+              <scale>0.318 0.318 0.35</scale>
               <uri>/home/misha/workspaces/hamster/src/mrm_sim/mrm_sim/meshes/wheel.dae</uri>
             </mesh>
           </geometry>
@@ -4477,7 +4531,7 @@
         <collision name="collision">
           <geometry>
             <box>
-              <size>0.501 0.2 0.19</size>
+              <size>0.185 0.1 0.03</size>
             </box>
           </geometry>
           <max_contacts>10</max_contacts>
@@ -4493,9 +4547,12 @@
         </collision>
         <visual name="visual">
           <geometry>
-            <mesh>
-              <uri>/home/misha/workspaces/hamster/src/mrm_sim/mrm_sim/meshes/chassis.dae</uri>
-            </mesh>
+            <!--	            <mesh>
+	              <uri>$(find mrm_sim)/meshes/chassis.dae</uri>
+	            </mesh>-->
+            <box>
+              <size>0.185 0.1 0.03</size>
+            </box>
           </geometry>
         </visual>
         <velocity_decay>
@@ -4507,12 +4564,12 @@
         <gravity>1</gravity>
       </link>
       <link name="right_front_wheel">
-        <pose>0.125 -0.1005 -0.06 1.5707 -0 0</pose>
+        <pose>0.083 -0.0725 -0.005 1.5707 -0 0</pose>
         <collision name="collision">
           <geometry>
             <cylinder>
-              <radius>0.11</radius>
-              <length>0.075</length>
+              <radius>0.035</radius>
+              <length>0.035</length>
             </cylinder>
           </geometry>
           <surface>
@@ -4534,6 +4591,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
+              <scale>0.318 0.318 0.35</scale>
               <uri>/home/misha/workspaces/hamster/src/mrm_sim/mrm_sim/meshes/wheel.dae</uri>
             </mesh>
           </geometry>
@@ -4558,12 +4616,12 @@
         <gravity>1</gravity>
       </link>
       <link name="left_front_wheel">
-        <pose>0.125 0.1005 -0.06 1.5707 -0 0</pose>
+        <pose>0.083 0.0725 -0.005 1.5707 -0 0</pose>
         <collision name="collision">
           <geometry>
             <cylinder>
-              <radius>0.11</radius>
-              <length>0.075</length>
+              <radius>0.035</radius>
+              <length>0.035</length>
             </cylinder>
           </geometry>
           <surface>
@@ -4585,6 +4643,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
+              <scale>0.318 0.318 0.35</scale>
               <uri>/home/misha/workspaces/hamster/src/mrm_sim/mrm_sim/meshes/wheel.dae</uri>
             </mesh>
           </geometry>
@@ -4609,12 +4668,12 @@
         <gravity>1</gravity>
       </link>
       <link name="right_rear_wheel">
-        <pose>-0.125 -0.1005 -0.06 1.5707 -0 0</pose>
+        <pose>-0.083 -0.0725 -0.005 1.5707 -0 0</pose>
         <collision name="collision">
           <geometry>
             <cylinder>
-              <radius>0.11</radius>
-              <length>0.075</length>
+              <radius>0.035</radius>
+              <length>0.035</length>
             </cylinder>
           </geometry>
           <surface>
@@ -4636,6 +4695,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
+              <scale>0.318 0.318 0.35</scale>
               <uri>/home/misha/workspaces/hamster/src/mrm_sim/mrm_sim/meshes/wheel.dae</uri>
             </mesh>
           </geometry>
@@ -4660,12 +4720,12 @@
         <gravity>1</gravity>
       </link>
       <link name="left_rear_wheel">
-        <pose>-0.125 0.1005 -0.06 1.5707 -0 0</pose>
+        <pose>-0.083 0.0725 -0.005 1.5707 -0 0</pose>
         <collision name="collision">
           <geometry>
             <cylinder>
-              <radius>0.11</radius>
-              <length>0.075</length>
+              <radius>0.035</radius>
+              <length>0.035</length>
             </cylinder>
           </geometry>
           <surface>
@@ -4687,7 +4747,7 @@
         <visual name="visual">
           <geometry>
             <mesh>
-              <scale>1 1 1</scale>
+              <scale>0.318 0.318 0.35</scale>
               <uri>/home/misha/workspaces/hamster/src/mrm_sim/mrm_sim/meshes/wheel.dae</uri>
             </mesh>
           </geometry>

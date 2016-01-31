@@ -95,6 +95,8 @@
 	      <!-- Shaft #3 -->
 	      <!-- <pose>-8.26 -0.33 0.75 0 0 0</pose> -->
 	      <static>0</static>
+	      
+	      
 	      <link name='chassis'>
 	        <inertial>
 	          <mass>500</mass>
@@ -110,7 +112,7 @@
 	        <collision name='collision'>
 	          <geometry>
 	            <box>
-	              <size>0.501 0.2 0.19</size>
+	              <size>0.185 0.1 0.03</size>
 	            </box>
 	          </geometry>
 	          <max_contacts>10</max_contacts>
@@ -126,9 +128,12 @@
 	        </collision>
 	        <visual name='visual'>
 	          <geometry>
-	            <mesh>
+<!--	            <mesh>
 	              <uri>$(find mrm_sim)/meshes/chassis.dae</uri>
-	            </mesh>
+	            </mesh>-->
+		    <box>
+	              <size>0.185 0.1 0.03</size>
+	            </box>
 	          </geometry>
 	        </visual>
 	        <velocity_decay>
@@ -139,13 +144,16 @@
 	        <kinematic>0</kinematic>
 	        <gravity>1</gravity>
 	      </link>
+	      
+	      
+	      
 	      <link name='right_front_wheel'>
-	        <pose>0.125 -0.1005 -0.06 1.5707 -0 0</pose>
+	        <pose>0.083 -0.0725 -0.005 1.5707 -0 0</pose>
 	        <collision name='collision'>
 	          <geometry>
 	            <cylinder>
-	              <radius>0.11</radius>
-	              <length>0.075</length>
+	              <radius>0.035</radius>
+	              <length>0.035</length>
 	            </cylinder>
 	          </geometry>
 	          <surface>
@@ -167,6 +175,7 @@
 	        <visual name='visual'>
 	          <geometry>
 	            <mesh>
+		      <scale>0.318 0.318 0.35</scale>
 	              <uri>$(find mrm_sim)/meshes/wheel.dae</uri>
 	            </mesh>
 	          </geometry>
@@ -190,13 +199,15 @@
 	        <kinematic>0</kinematic>
 	        <gravity>1</gravity>
 	      </link>
+	      
+	      
 	      <link name='left_front_wheel'>
-	        <pose>0.125 0.1005 -0.06 1.5707 -0 0</pose>
+	        <pose>0.083 0.0725 -0.005 1.5707 -0 0</pose>
 	        <collision name='collision'>
 	          <geometry>
 	            <cylinder>
-	              <radius>0.11</radius>
-	              <length>0.075</length>
+	              <radius>0.035</radius>
+	              <length>0.035</length>
 	            </cylinder>
 	          </geometry>
 	          <surface>
@@ -218,6 +229,7 @@
 	        <visual name='visual'>
 	          <geometry>
 	            <mesh>
+		      <scale>0.318 0.318 0.35</scale>
 	              <uri>$(find mrm_sim)/meshes/wheel.dae</uri>
 	            </mesh>
 	          </geometry>
@@ -241,13 +253,14 @@
 	        <kinematic>0</kinematic>
 	        <gravity>1</gravity>
 	      </link>
+	      
 	      <link name='right_rear_wheel'>
-	        <pose>-0.125 -0.1005 -0.06 1.5707 -0 0</pose>
+	        <pose>-0.083 -0.0725 -0.005 1.5707 -0 0</pose>
 	        <collision name='collision'>
 	          <geometry>
 	            <cylinder>
-	              <radius>0.11</radius>
-	              <length>0.075</length>
+	              <radius>0.035</radius>
+	              <length>0.035</length>
 	            </cylinder>
 	          </geometry>
 	          <surface>
@@ -269,6 +282,7 @@
 	        <visual name='visual'>
 	          <geometry>
 	            <mesh>
+		      <scale>0.318 0.318 0.35</scale>
 	              <uri>$(find mrm_sim)/meshes/wheel.dae</uri>
 	            </mesh>
 	          </geometry>
@@ -292,13 +306,14 @@
 	        <kinematic>0</kinematic>
 	        <gravity>1</gravity>
 	      </link>
+	      
 	      <link name='left_rear_wheel'>
-	        <pose>-0.125 0.1005 -0.06 1.5707 -0 0</pose>
+	        <pose>-0.083 0.0725 -0.005 1.5707 -0 0</pose>
 	        <collision name='collision'>
 	          <geometry>
 	            <cylinder>
-	              <radius>0.11</radius>
-	              <length>0.075</length>
+	              <radius>0.035</radius>
+	              <length>0.035</length>
 	            </cylinder>
 	          </geometry>
 	          <surface>
@@ -320,7 +335,7 @@
 	        <visual name='visual'>
 	          <geometry>
 	            <mesh>
-	              <scale>1 1 1</scale>
+	              <scale>0.318 0.318 0.35</scale>
 	              <uri>$(find mrm_sim)/meshes/wheel.dae</uri>
 	            </mesh>
 	          </geometry>
@@ -344,6 +359,8 @@
 	        <kinematic>0</kinematic>
 	        <gravity>1</gravity>
 	      </link>
+	      
+	      
 	      <joint name='right_front' type='revolute'>
 	        <pose>0 0 0 0 -0 0</pose>
 	        <child>right_front_wheel</child>
@@ -356,6 +373,7 @@
 	          </limit>
 	        </axis>
 	      </joint>
+	      
 	      <joint name='right_rear' type='revolute'>
 	        <pose>0 0 0 0 -0 0</pose>
 	        <child>right_rear_wheel</child>
@@ -368,6 +386,7 @@
 	          </limit>
 	        </axis>
 	      </joint>
+	      
 	      <joint name='left_front' type='revolute'>
 	        <pose>0 0 0 0 -0 0</pose>
 	        <child>left_front_wheel</child>
@@ -380,6 +399,7 @@
 	          </limit>
 	        </axis>
 	      </joint>
+	      
 	      <joint name='left_rear' type='revolute'>
 	        <pose>0 0 0 0 -0 0</pose>
 	        <child>left_rear_wheel</child>
@@ -392,6 +412,7 @@
 	          </limit>
 	        </axis>
 	      </joint>
+	      
 	      <link name='hokuyo::link'>
 	        <inertial>
 	          <mass>0.1</mass>
@@ -486,6 +507,7 @@
 	        <kinematic>0</kinematic>
 	        <gravity>1</gravity>
 	      </link>
+	      
 	      <joint name='hokuyo_joint' type='revolute'>
 	        <child>hokuyo::link</child>
 	        <parent>chassis</parent>
