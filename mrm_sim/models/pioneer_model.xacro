@@ -579,45 +579,48 @@
 	</xacro:macro>
 
 	<xacro:include filename="$(find mrm_sim)/models/$(arg robots_count)robots.xacro" />
-
-	<model name='willowgarage'>
-      <static>1</static>
-      <pose>-11 -29 0 0 -0 0</pose>
-      <link name='walls'>
-        <collision name='collision'>
-          <geometry>
-            <mesh>
-              <uri>$(find mrm_sim)/meshes/willowgarage_collision.dae</uri>
-            </mesh>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <bounce/>
-            <friction>
-              <ode/>
-            </friction>
-            <contact>
-              <ode/>
-            </contact>
-          </surface>
-        </collision>
-        <visual name='visual'>
-          <geometry>
-            <mesh>
-              <uri>$(find mrm_sim)/meshes/willowgarage_visual.dae</uri>
-            </mesh>
-          </geometry>
-          <cast_shadows>0</cast_shadows>
-        </visual>
-        <velocity_decay>
-          <linear>0</linear>
-          <angular>0</angular>
-        </velocity_decay>
-        <self_collide>0</self_collide>
-        <kinematic>0</kinematic>
-        <gravity>1</gravity>
-      </link>
-    </model>
-
+	
+  <model name="willow_closed">
+    <static>true</static>
+    <pose>0 0 0.001 0 0 0</pose>
+    <link name="walls">
+      <collision name="collision">
+        <geometry>
+          <mesh>
+	    <uri>$(find mrm_sim)/meshes/office_mesh/willowgarage_collision.dae</uri>
+          </mesh>
+        </geometry>
+	<max_contacts>100</max_contacts>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.99</mu>
+              <mu2>0.99</mu2>
+            </ode>
+          </friction>
+          <bounce/>
+          <contact>
+            <ode/>
+          </contact>
+        </surface>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+           <uri>$(find mrm_sim)/meshes/office_mesh/willowgarage_visual.dae</uri>
+          </mesh>
+        </geometry>
+        <cast_shadows>true</cast_shadows>
+      </visual>
+      <velocity_decay>
+	<linear>0</linear>
+	<angular>0</angular>
+      </velocity_decay>
+      <self_collide>0</self_collide>
+      <kinematic>0</kinematic>
+      <gravity>1</gravity>
+    </link>
+  </model>
+	
   </world>
 </sdf>

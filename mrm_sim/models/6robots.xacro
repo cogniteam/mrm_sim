@@ -4,11 +4,11 @@
        xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
        xmlns:xacro="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface">
 
-<xacro:pioneer_model robot_id="1"  position="2 0 0.3 0 0 0" />
-<xacro:pioneer_model robot_id="2"  position="3 -11 0.3 0 0 0" />
-<xacro:pioneer_model robot_id="3"  position="17 -16 0.3 0 0 -3.1415" />
-<xacro:pioneer_model robot_id="4"  position="3 0 0.3 0 0 0" />
-<xacro:pioneer_model robot_id="5"  position="4 0 0.3 0 0 0" />
-<xacro:pioneer_model robot_id="6"  position="5 0 0.3 0 0 0" />
+<xacro:pioneer_model robot_id="1"  position="1 1 0.3 0 0 0" />
+<xacro:pioneer_model robot_id="2"  position="2 1 0.3 0 0 0" />
+<xacro:pioneer_model robot_id="3"  position="3 1 0.3 0 0 0" />
+<xacro:pioneer_model robot_id="4"  position="1 2 0.3 0 0 0" />
+<xacro:pioneer_model robot_id="5"  position="2 2 0.3 0 0 0" />
+<xacro:pioneer_model robot_id="6"  position="3 2 0.3 0 0 0" />
 
 </xacro>

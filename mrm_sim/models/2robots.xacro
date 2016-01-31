@@ -4,7 +4,7 @@
        xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
        xmlns:xacro="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface">
 
-<xacro:pioneer_model robot_id="1"  position="2 0 0.3 0 0 0" />
-<xacro:pioneer_model robot_id="2"  position="3 -11 0.3 0 0 0" />
+<xacro:pioneer_model robot_id="1"  position="1 1 0.3 0 0 0" />
+<xacro:pioneer_model robot_id="2"  position="2 1 0.3 0 0 0" />
 
 </xacro>
