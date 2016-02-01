@@ -78,9 +78,9 @@
       <shadows>1</shadows>
     </scene>
 
-    <xacro:macro name="pioneer_model" params="robot_id position">
+    <xacro:macro name="hamster_model" params="robot_id position">
 
-	    <model name='pioneer3at_${robot_id}'>
+	    <model name='hamster3at_${robot_id}'>
 
     	  <pose>${position}</pose>
 	      <!-- Shaft #1 -->
@@ -143,7 +143,6 @@
 	      </link>
 	      
 	      
-	      
 	      <link name='shell'>
 		<pose>0.005 0 -0.01 0 0 0</pose>
 	        <inertial>
@@ -190,8 +189,6 @@
 	        <kinematic>0</kinematic>
 	        <gravity>1</gravity>
 	      </link>
-	      
-	      
 	      
 	      
 	      <link name='right_front_wheel'>
@@ -301,6 +298,7 @@
 	        <gravity>1</gravity>
 	      </link>
 	      
+	      
 	      <link name='right_rear_wheel'>
 	        <pose>-0.083 -0.0725 -0.005 1.5707 -0 0</pose>
 	        <collision name='collision'>
@@ -353,6 +351,7 @@
 	        <kinematic>0</kinematic>
 	        <gravity>1</gravity>
 	      </link>
+	      
 	      
 	      <link name='left_rear_wheel'>
 	        <pose>-0.083 0.0725 -0.005 1.5707 -0 0</pose>
@@ -407,7 +406,105 @@
 	        <gravity>1</gravity>
 	      </link>
 	      
-
+	      
+	      <link name="rplidar_link">
+		<pose>-0.045 0 0.095 0 0 0</pose>
+		<visual name="visual">
+		  <geometry>
+		    <cylinder>
+		      <radius>0.035</radius>
+		      <length>0.02</length>
+		    </cylinder>
+		  </geometry>
+		</visual>
+		<collision name="collision">
+		  <geometry>
+		    <cylinder>
+		      <radius>0.035</radius>
+		      <length>0.02</length>
+		    </cylinder>
+		  </geometry>
+		</collision>
+		<sensor name="rplidar" type="ray">
+		  <ray>
+		    <scan>
+		      <horizontal>
+			<samples>360</samples>
+			<resolution>1</resolution>
+			<min_angle>-3.1415</min_angle>
+			<max_angle>3.1415</max_angle>
+		      </horizontal> 
+		    </scan>
+		    <range>
+		      <min>0.10</min>
+		      <max>6</max>
+		      <resolution>0.01</resolution>
+		    </range>
+		    <noise>
+		      <type>gaussian</type>
+		      <mean>0.0</mean>
+		      <stddev>0.01</stddev>
+		    </noise>
+		  </ray>
+		  <plugin name="laser" filename="libRayPlugin.so" />
+		  <always_on>1</always_on>
+		  <update_rate>6</update_rate>
+		  <visualize>false</visualize>
+		  <plugin name="gazebo_ros_laser_controller" filename="libgazebo_ros_laser.so">
+		    <gaussianNoise>0.005</gaussianNoise>
+		    <alwaysOn>true</alwaysOn>
+		    <updateRate>6</updateRate>
+		    <topicName>/hamster_${robot_id}/scan_rplidar</topicName>
+		    <frameName>/hamster_${robot_id}/rplidar_link</frameName>
+		    <hokuyoMinIntensity>101</hokuyoMinIntensity>
+		  </plugin>
+		</sensor>
+	      </link>
+	      
+	      
+	      <link name="camera::link">
+		<pose>0.10 0.05 0.15 0 0 0</pose>
+		<inertial>
+		  <mass>0.1</mass>
+		</inertial>
+		<collision name="collision">
+		  <geometry>
+		    <box>
+		      <size>0.01 0.01 0.01</size>
+		    </box>
+		  </geometry>
+		</collision>
+		<visual name="visual">
+		  <geometry>
+		    <box>
+		      <size>0.01 0.01 0.01</size>
+		    </box>
+		  </geometry>
+		</visual>
+		<sensor name="camera" type="camera">
+		  <camera>
+		    <horizontal_fov>0.752</horizontal_fov>
+		    <image>
+		      <width>640</width>
+		      <height>480</height>
+		    </image>
+		    <clip>
+		      <near>0.1</near>
+		      <far>100</far>
+		    </clip>
+		  </camera>
+		  <always_on>1</always_on>
+		  <update_rate>15</update_rate>
+		  <visualize>false</visualize>
+		  <plugin name='ros_camera' filename='libgazebo_ros_camera.so'>
+			  <robotNamespace>/hamster_${robot_id}</robotNamespace>
+		  </plugin>
+		</sensor>
+	      </link>		
+	      
+	      
+	      
+	      
 	      <joint name='shell_to_chassis' type='revolute'>
 	        <pose>0 0 0 0 0 0</pose>
 	        <child>shell</child>
@@ -420,8 +517,7 @@
 	          </limit>
 	        </axis>
 	      </joint>
-	      
-	      
+
 	      <joint name='right_front' type='revolute'>
 	        <pose>0 0 0 0 -0 0</pose>
 	        <child>right_front_wheel</child>
@@ -473,157 +569,22 @@
 	          </limit>
 	        </axis>
 	      </joint>
-	      
-	      <link name='hokuyo::link'>
-	        <inertial>
-	          <mass>0.1</mass>
-	          <inertia>
-	            <ixx>1</ixx>
-	            <ixy>0</ixy>
-	            <ixz>0</ixz>
-	            <iyy>1</iyy>
-	            <iyz>0</iyz>
-	            <izz>1</izz>
-	          </inertia>
-	        </inertial>
-	        <visual name='visual'>
-	          <geometry>
-	            <mesh filename="package://mrm_sim/meshes/hokuyo.dae" />
-	          </geometry>
-	        </visual>
-	        <collision name='collision-base'>
-	          <pose>0 0 -0.0145 0 -0 0</pose>
-	          <geometry>
-	            <box>
-	              <size>0.05 0.05 0.041</size>
-	            </box>
-	          </geometry>
-	          <max_contacts>10</max_contacts>
-	          <surface>
-	            <bounce/>
-	            <friction>
-	              <ode/>
-	            </friction>
-	            <contact>
-	              <ode/>
-	            </contact>
-	          </surface>
-	        </collision>
-	        <collision name='collision-top'>
-	          <pose>0 0 0.0205 0 -0 0</pose>
-	          <geometry>
-	            <cylinder>
-	              <radius>0.021</radius>
-	              <length>0.029</length>
-	            </cylinder>
-	          </geometry>
-	          <max_contacts>10</max_contacts>
-	          <surface>
-	            <bounce/>
-	            <friction>
-	              <ode/>
-	            </friction>
-	            <contact>
-	              <ode/>
-	            </contact>
-	          </surface>
-	        </collision>
-	        <sensor name='laser' type='ray'>
-	          <pose>0 0 0 0 -0 0</pose>
-	          <ray>
-	            <scan>
-	              <horizontal>
-	                <samples>1040</samples>
-	                <resolution>1</resolution>
-	                <min_angle>-2.26889</min_angle>
-	                <max_angle>2.2689</max_angle>
-	              </horizontal>
-	            </scan>
-	            <range>
-	              <min>0.1</min>
-	              <max>30</max>
-	              <resolution>0.01</resolution>
-	            </range>
-	          </ray>
-	          <!-- <plugin name='laser' filename='libRayPlugin.so'/> -->
-	          <plugin name='gazebo_ros_hokuyo_laser_controller' filename='libgazebo_ros_laser.so'>
-	            <gaussianNoise>0.01</gaussianNoise>
-	            <alwaysOn>true</alwaysOn>
-	            <hokuyoMinIntensity>101</hokuyoMinIntensity>
-	            <updateRate>40.0</updateRate>
-	            <topicName>/pioneer_${robot_id}/scan_raw</topicName>
-	            <frameName>/pioneer_${robot_id}/odom_tf__not_used__a</frameName>
-	            <interface:laser/>
-	          </plugin>
-	          <always_on>1</always_on>
-	          <update_rate>30</update_rate>
-	          <visualize>1</visualize>
-	        </sensor>
-	        <velocity_decay>
-	          <linear>0</linear>
-	          <angular>0</angular>
-	        </velocity_decay>
-	        <pose>$(arg laser_forward_offset) 0 0.06 0 -0 0</pose>
-	        <self_collide>0</self_collide>
-	        <kinematic>0</kinematic>
-	        <gravity>1</gravity>
-	      </link>
-	      
-	      <joint name='hokuyo_joint' type='revolute'>
-	        <child>hokuyo::link</child>
-	        <parent>chassis</parent>
-	        <axis>
-	          <xyz>0 0 1</xyz>
-	          <limit>
-	            <upper>0</upper>
-	            <lower>0</lower>
-	          </limit>
-	        </axis>
+
+	      <joint name="rplidar_to_chassis" type="revolute">
+		<pose>0 0 0 0 0 0</pose>
+		<child>rplidar_link</child>
+		<parent>chassis</parent>
+		<axis>
+		  <xyz>0 0 1</xyz>
+		  <limit>
+		    <upper>0</upper>
+		    <lower>0</lower>
+		  </limit>
+		</axis>
 	      </joint>
 
-		  
-		    <link name="camera::link">
-		      <pose>0.10 0.05 0.15 0 0 0</pose>
-		      <inertial>
-		        <mass>0.1</mass>
-		      </inertial>
-		      <collision name="collision">
-		        <geometry>
-		          <box>
-		            <size>0.1 0.1 0.1</size>
-		          </box>
-		        </geometry>
-		      </collision>
-		      <visual name="visual">
-		        <geometry>
-		          <box>
-		            <size>0.1 0.1 0.1</size>
-		          </box>
-		        </geometry>
-		      </visual>
-		      <sensor name="camera" type="camera">
-		        <camera>
-		          <horizontal_fov>0.752</horizontal_fov>
-		          <image>
-		            <width>640</width>
-		            <height>480</height>
-		          </image>
-		          <clip>
-		            <near>0.1</near>
-		            <far>100</far>
-		          </clip>
-		        </camera>
-		        <always_on>1</always_on>
-		        <update_rate>15</update_rate>
-		        <visualize>false</visualize>
-
-		        <plugin name='ros_camera' filename='libgazebo_ros_camera.so'>
-	        		<robotNamespace>/pioneer_${robot_id}</robotNamespace>
-		        </plugin>
-
-		      </sensor>
-		    </link>
 	      <joint name="camera_joint" type="revolute">
+		<pose>0 0 0 0 0 0</pose>
 	        <child>camera::link</child>
 	        <parent>chassis</parent>
 	        <axis>
@@ -635,9 +596,12 @@
 	        </axis>
 	      </joint>
 
+	      
+	      
+	      
 	      <plugin name='skid_steer_drive_controller' filename='libgazebo_ros_skid_steer_drive.so'>
 	        <updateRate>100.0</updateRate>
-	        <robotNamespace>/pioneer_${robot_id}</robotNamespace>
+	        <robotNamespace>/hamster_${robot_id}</robotNamespace>
 	        <leftFrontJoint>left_front</leftFrontJoint>
 	        <rightFrontJoint>right_front</rightFrontJoint>
 	        <leftRearJoint>left_rear</leftRearJoint>
@@ -645,14 +609,14 @@
 	        <wheelSeparation>0.4</wheelSeparation>
 	        <wheelDiameter>0.215</wheelDiameter>
 	        <odometryTopic>odom_raw</odometryTopic>
-	        <robotBaseFrame>/pioneer_${robot_id}/odom_tf</robotBaseFrame>
+	        <robotBaseFrame>/hamster_${robot_id}/odom_tf</robotBaseFrame>
 	        <torque>120</torque>
 	        <commandTopic>cmd_vel</commandTopic>
 	        <broadcastTF>1</broadcastTF>
 	      </plugin>
 <!-- 	      <plugin filename="libgazebo_ros_imu.so" name="imu_en_ros">
 	  		  <bodyName>chassis</bodyName>
-	  		  <robotNamespace>/pioneer_${robot_id}</robotNamespace>
+	  		  <robotNamespace>/hamster_${robot_id}</robotNamespace>
 	  		  <topicName>imu</topicName>
 	  		  <gaussianNoise>0.00</gaussianNoise>
 	  		  <updateRate>45.0</updateRate>

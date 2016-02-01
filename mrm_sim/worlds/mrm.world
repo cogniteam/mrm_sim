@@ -77,7 +77,7 @@
       <background>0.7 0.7 0.7 1</background>
       <shadows>1</shadows>
     </scene>
-    <model name="pioneer3at_1">
+    <model name="hamster3at_1">
       <pose>1 1 0.3 0 0 0</pose>
       <!-- Shaft #1 -->
       <!-- <pose>8.5 -0.35 0.75 0 0 3.1415</pose> -->
@@ -386,6 +386,98 @@
         <kinematic>0</kinematic>
         <gravity>1</gravity>
       </link>
+      <link name="rplidar_link">
+        <pose>-0.045 0 0.095 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.035</radius>
+              <length>0.02</length>
+            </cylinder>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.035</radius>
+              <length>0.02</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <sensor name="rplidar" type="ray">
+          <ray>
+            <scan>
+              <horizontal>
+                <samples>360</samples>
+                <resolution>1</resolution>
+                <min_angle>-3.1415</min_angle>
+                <max_angle>3.1415</max_angle>
+              </horizontal>
+            </scan>
+            <range>
+              <min>0.10</min>
+              <max>6</max>
+              <resolution>0.01</resolution>
+            </range>
+            <noise>
+              <type>gaussian</type>
+              <mean>0.0</mean>
+              <stddev>0.01</stddev>
+            </noise>
+          </ray>
+          <plugin filename="libRayPlugin.so" name="laser"/>
+          <always_on>1</always_on>
+          <update_rate>6</update_rate>
+          <visualize>false</visualize>
+          <plugin filename="libgazebo_ros_laser.so" name="gazebo_ros_laser_controller">
+            <gaussianNoise>0.005</gaussianNoise>
+            <alwaysOn>true</alwaysOn>
+            <updateRate>6</updateRate>
+            <topicName>/hamster_1/scan_rplidar</topicName>
+            <frameName>/hamster_1/rplidar_link</frameName>
+            <hokuyoMinIntensity>101</hokuyoMinIntensity>
+          </plugin>
+        </sensor>
+      </link>
+      <link name="camera::link">
+        <pose>0.10 0.05 0.15 0 0 0</pose>
+        <inertial>
+          <mass>0.1</mass>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.01 0.01 0.01</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.01 0.01 0.01</size>
+            </box>
+          </geometry>
+        </visual>
+        <sensor name="camera" type="camera">
+          <camera>
+            <horizontal_fov>0.752</horizontal_fov>
+            <image>
+              <width>640</width>
+              <height>480</height>
+            </image>
+            <clip>
+              <near>0.1</near>
+              <far>100</far>
+            </clip>
+          </camera>
+          <always_on>1</always_on>
+          <update_rate>15</update_rate>
+          <visualize>false</visualize>
+          <plugin filename="libgazebo_ros_camera.so" name="ros_camera">
+            <robotNamespace>/hamster_1</robotNamespace>
+          </plugin>
+        </sensor>
+      </link>
       <joint name="shell_to_chassis" type="revolute">
         <pose>0 0 0 0 0 0</pose>
         <child>shell</child>
@@ -446,102 +538,9 @@
           </limit>
         </axis>
       </joint>
-      <link name="hokuyo::link">
-        <inertial>
-          <mass>0.1</mass>
-          <inertia>
-            <ixx>1</ixx>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyy>1</iyy>
-            <iyz>0</iyz>
-            <izz>1</izz>
-          </inertia>
-        </inertial>
-        <visual name="visual">
-          <geometry>
-            <mesh filename="package://mrm_sim/meshes/hokuyo.dae"/>
-          </geometry>
-        </visual>
-        <collision name="collision-base">
-          <pose>0 0 -0.0145 0 -0 0</pose>
-          <geometry>
-            <box>
-              <size>0.05 0.05 0.041</size>
-            </box>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <bounce/>
-            <friction>
-              <ode/>
-            </friction>
-            <contact>
-              <ode/>
-            </contact>
-          </surface>
-        </collision>
-        <collision name="collision-top">
-          <pose>0 0 0.0205 0 -0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.021</radius>
-              <length>0.029</length>
-            </cylinder>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <bounce/>
-            <friction>
-              <ode/>
-            </friction>
-            <contact>
-              <ode/>
-            </contact>
-          </surface>
-        </collision>
-        <sensor name="laser" type="ray">
-          <pose>0 0 0 0 -0 0</pose>
-          <ray>
-            <scan>
-              <horizontal>
-                <samples>1040</samples>
-                <resolution>1</resolution>
-                <min_angle>-2.26889</min_angle>
-                <max_angle>2.2689</max_angle>
-              </horizontal>
-            </scan>
-            <range>
-              <min>0.1</min>
-              <max>30</max>
-              <resolution>0.01</resolution>
-            </range>
-          </ray>
-          <!-- <plugin name='laser' filename='libRayPlugin.so'/> -->
-          <plugin filename="libgazebo_ros_laser.so" name="gazebo_ros_hokuyo_laser_controller">
-            <gaussianNoise>0.01</gaussianNoise>
-            <alwaysOn>true</alwaysOn>
-            <hokuyoMinIntensity>101</hokuyoMinIntensity>
-            <updateRate>40.0</updateRate>
-            <topicName>/pioneer_1/scan_raw</topicName>
-            <frameName>/pioneer_1/odom_tf__not_used__a</frameName>
-            <interface:laser/>
-          </plugin>
-          <always_on>1</always_on>
-          <update_rate>30</update_rate>
-          <visualize>1</visualize>
-        </sensor>
-        <velocity_decay>
-          <linear>0</linear>
-          <angular>0</angular>
-        </velocity_decay>
-        <pose>0.35 0 0.06 0 -0 0</pose>
-        <self_collide>0</self_collide>
-        <kinematic>0</kinematic>
-        <gravity>1</gravity>
-      </link>
-      <joint name="hokuyo_joint" type="revolute">
-        <child>hokuyo::link</child>
+      <joint name="rplidar_to_chassis" type="revolute">
+        <pose>0 0 0 0 0 0</pose>
+        <child>rplidar_link</child>
         <parent>chassis</parent>
         <axis>
           <xyz>0 0 1</xyz>
@@ -551,46 +550,8 @@
           </limit>
         </axis>
       </joint>
-      <link name="camera::link">
-        <pose>0.10 0.05 0.15 0 0 0</pose>
-        <inertial>
-          <mass>0.1</mass>
-        </inertial>
-        <collision name="collision">
-          <geometry>
-            <box>
-              <size>0.1 0.1 0.1</size>
-            </box>
-          </geometry>
-        </collision>
-        <visual name="visual">
-          <geometry>
-            <box>
-              <size>0.1 0.1 0.1</size>
-            </box>
-          </geometry>
-        </visual>
-        <sensor name="camera" type="camera">
-          <camera>
-            <horizontal_fov>0.752</horizontal_fov>
-            <image>
-              <width>640</width>
-              <height>480</height>
-            </image>
-            <clip>
-              <near>0.1</near>
-              <far>100</far>
-            </clip>
-          </camera>
-          <always_on>1</always_on>
-          <update_rate>15</update_rate>
-          <visualize>false</visualize>
-          <plugin filename="libgazebo_ros_camera.so" name="ros_camera">
-            <robotNamespace>/pioneer_1</robotNamespace>
-          </plugin>
-        </sensor>
-      </link>
       <joint name="camera_joint" type="revolute">
+        <pose>0 0 0 0 0 0</pose>
         <child>camera::link</child>
         <parent>chassis</parent>
         <axis>
@@ -603,7 +564,7 @@
       </joint>
       <plugin filename="libgazebo_ros_skid_steer_drive.so" name="skid_steer_drive_controller">
         <updateRate>100.0</updateRate>
-        <robotNamespace>/pioneer_1</robotNamespace>
+        <robotNamespace>/hamster_1</robotNamespace>
         <leftFrontJoint>left_front</leftFrontJoint>
         <rightFrontJoint>right_front</rightFrontJoint>
         <leftRearJoint>left_rear</leftRearJoint>
@@ -611,20 +572,20 @@
         <wheelSeparation>0.4</wheelSeparation>
         <wheelDiameter>0.215</wheelDiameter>
         <odometryTopic>odom_raw</odometryTopic>
-        <robotBaseFrame>/pioneer_1/odom_tf</robotBaseFrame>
+        <robotBaseFrame>/hamster_1/odom_tf</robotBaseFrame>
         <torque>120</torque>
         <commandTopic>cmd_vel</commandTopic>
         <broadcastTF>1</broadcastTF>
       </plugin>
       <!-- 	      <plugin filename="libgazebo_ros_imu.so" name="imu_en_ros">
 	  		  <bodyName>chassis</bodyName>
-	  		  <robotNamespace>/pioneer_${robot_id}</robotNamespace>
+	  		  <robotNamespace>/hamster_${robot_id}</robotNamespace>
 	  		  <topicName>imu</topicName>
 	  		  <gaussianNoise>0.00</gaussianNoise>
 	  		  <updateRate>45.0</updateRate>
 	  	  </plugin> -->
     </model>
-    <model name="pioneer3at_2">
+    <model name="hamster3at_2">
       <pose>2 1 0.3 0 0 0</pose>
       <!-- Shaft #1 -->
       <!-- <pose>8.5 -0.35 0.75 0 0 3.1415</pose> -->
@@ -933,6 +894,98 @@
         <kinematic>0</kinematic>
         <gravity>1</gravity>
       </link>
+      <link name="rplidar_link">
+        <pose>-0.045 0 0.095 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.035</radius>
+              <length>0.02</length>
+            </cylinder>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.035</radius>
+              <length>0.02</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <sensor name="rplidar" type="ray">
+          <ray>
+            <scan>
+              <horizontal>
+                <samples>360</samples>
+                <resolution>1</resolution>
+                <min_angle>-3.1415</min_angle>
+                <max_angle>3.1415</max_angle>
+              </horizontal>
+            </scan>
+            <range>
+              <min>0.10</min>
+              <max>6</max>
+              <resolution>0.01</resolution>
+            </range>
+            <noise>
+              <type>gaussian</type>
+              <mean>0.0</mean>
+              <stddev>0.01</stddev>
+            </noise>
+          </ray>
+          <plugin filename="libRayPlugin.so" name="laser"/>
+          <always_on>1</always_on>
+          <update_rate>6</update_rate>
+          <visualize>false</visualize>
+          <plugin filename="libgazebo_ros_laser.so" name="gazebo_ros_laser_controller">
+            <gaussianNoise>0.005</gaussianNoise>
+            <alwaysOn>true</alwaysOn>
+            <updateRate>6</updateRate>
+            <topicName>/hamster_2/scan_rplidar</topicName>
+            <frameName>/hamster_2/rplidar_link</frameName>
+            <hokuyoMinIntensity>101</hokuyoMinIntensity>
+          </plugin>
+        </sensor>
+      </link>
+      <link name="camera::link">
+        <pose>0.10 0.05 0.15 0 0 0</pose>
+        <inertial>
+          <mass>0.1</mass>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.01 0.01 0.01</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.01 0.01 0.01</size>
+            </box>
+          </geometry>
+        </visual>
+        <sensor name="camera" type="camera">
+          <camera>
+            <horizontal_fov>0.752</horizontal_fov>
+            <image>
+              <width>640</width>
+              <height>480</height>
+            </image>
+            <clip>
+              <near>0.1</near>
+              <far>100</far>
+            </clip>
+          </camera>
+          <always_on>1</always_on>
+          <update_rate>15</update_rate>
+          <visualize>false</visualize>
+          <plugin filename="libgazebo_ros_camera.so" name="ros_camera">
+            <robotNamespace>/hamster_2</robotNamespace>
+          </plugin>
+        </sensor>
+      </link>
       <joint name="shell_to_chassis" type="revolute">
         <pose>0 0 0 0 0 0</pose>
         <child>shell</child>
@@ -993,102 +1046,9 @@
           </limit>
         </axis>
       </joint>
-      <link name="hokuyo::link">
-        <inertial>
-          <mass>0.1</mass>
-          <inertia>
-            <ixx>1</ixx>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyy>1</iyy>
-            <iyz>0</iyz>
-            <izz>1</izz>
-          </inertia>
-        </inertial>
-        <visual name="visual">
-          <geometry>
-            <mesh filename="package://mrm_sim/meshes/hokuyo.dae"/>
-          </geometry>
-        </visual>
-        <collision name="collision-base">
-          <pose>0 0 -0.0145 0 -0 0</pose>
-          <geometry>
-            <box>
-              <size>0.05 0.05 0.041</size>
-            </box>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <bounce/>
-            <friction>
-              <ode/>
-            </friction>
-            <contact>
-              <ode/>
-            </contact>
-          </surface>
-        </collision>
-        <collision name="collision-top">
-          <pose>0 0 0.0205 0 -0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.021</radius>
-              <length>0.029</length>
-            </cylinder>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <bounce/>
-            <friction>
-              <ode/>
-            </friction>
-            <contact>
-              <ode/>
-            </contact>
-          </surface>
-        </collision>
-        <sensor name="laser" type="ray">
-          <pose>0 0 0 0 -0 0</pose>
-          <ray>
-            <scan>
-              <horizontal>
-                <samples>1040</samples>
-                <resolution>1</resolution>
-                <min_angle>-2.26889</min_angle>
-                <max_angle>2.2689</max_angle>
-              </horizontal>
-            </scan>
-            <range>
-              <min>0.1</min>
-              <max>30</max>
-              <resolution>0.01</resolution>
-            </range>
-          </ray>
-          <!-- <plugin name='laser' filename='libRayPlugin.so'/> -->
-          <plugin filename="libgazebo_ros_laser.so" name="gazebo_ros_hokuyo_laser_controller">
-            <gaussianNoise>0.01</gaussianNoise>
-            <alwaysOn>true</alwaysOn>
-            <hokuyoMinIntensity>101</hokuyoMinIntensity>
-            <updateRate>40.0</updateRate>
-            <topicName>/pioneer_2/scan_raw</topicName>
-            <frameName>/pioneer_2/odom_tf__not_used__a</frameName>
-            <interface:laser/>
-          </plugin>
-          <always_on>1</always_on>
-          <update_rate>30</update_rate>
-          <visualize>1</visualize>
-        </sensor>
-        <velocity_decay>
-          <linear>0</linear>
-          <angular>0</angular>
-        </velocity_decay>
-        <pose>0.35 0 0.06 0 -0 0</pose>
-        <self_collide>0</self_collide>
-        <kinematic>0</kinematic>
-        <gravity>1</gravity>
-      </link>
-      <joint name="hokuyo_joint" type="revolute">
-        <child>hokuyo::link</child>
+      <joint name="rplidar_to_chassis" type="revolute">
+        <pose>0 0 0 0 0 0</pose>
+        <child>rplidar_link</child>
         <parent>chassis</parent>
         <axis>
           <xyz>0 0 1</xyz>
@@ -1098,46 +1058,8 @@
           </limit>
         </axis>
       </joint>
-      <link name="camera::link">
-        <pose>0.10 0.05 0.15 0 0 0</pose>
-        <inertial>
-          <mass>0.1</mass>
-        </inertial>
-        <collision name="collision">
-          <geometry>
-            <box>
-              <size>0.1 0.1 0.1</size>
-            </box>
-          </geometry>
-        </collision>
-        <visual name="visual">
-          <geometry>
-            <box>
-              <size>0.1 0.1 0.1</size>
-            </box>
-          </geometry>
-        </visual>
-        <sensor name="camera" type="camera">
-          <camera>
-            <horizontal_fov>0.752</horizontal_fov>
-            <image>
-              <width>640</width>
-              <height>480</height>
-            </image>
-            <clip>
-              <near>0.1</near>
-              <far>100</far>
-            </clip>
-          </camera>
-          <always_on>1</always_on>
-          <update_rate>15</update_rate>
-          <visualize>false</visualize>
-          <plugin filename="libgazebo_ros_camera.so" name="ros_camera">
-            <robotNamespace>/pioneer_2</robotNamespace>
-          </plugin>
-        </sensor>
-      </link>
       <joint name="camera_joint" type="revolute">
+        <pose>0 0 0 0 0 0</pose>
         <child>camera::link</child>
         <parent>chassis</parent>
         <axis>
@@ -1150,7 +1072,7 @@
       </joint>
       <plugin filename="libgazebo_ros_skid_steer_drive.so" name="skid_steer_drive_controller">
         <updateRate>100.0</updateRate>
-        <robotNamespace>/pioneer_2</robotNamespace>
+        <robotNamespace>/hamster_2</robotNamespace>
         <leftFrontJoint>left_front</leftFrontJoint>
         <rightFrontJoint>right_front</rightFrontJoint>
         <leftRearJoint>left_rear</leftRearJoint>
@@ -1158,20 +1080,20 @@
         <wheelSeparation>0.4</wheelSeparation>
         <wheelDiameter>0.215</wheelDiameter>
         <odometryTopic>odom_raw</odometryTopic>
-        <robotBaseFrame>/pioneer_2/odom_tf</robotBaseFrame>
+        <robotBaseFrame>/hamster_2/odom_tf</robotBaseFrame>
         <torque>120</torque>
         <commandTopic>cmd_vel</commandTopic>
         <broadcastTF>1</broadcastTF>
       </plugin>
       <!-- 	      <plugin filename="libgazebo_ros_imu.so" name="imu_en_ros">
 	  		  <bodyName>chassis</bodyName>
-	  		  <robotNamespace>/pioneer_${robot_id}</robotNamespace>
+	  		  <robotNamespace>/hamster_${robot_id}</robotNamespace>
 	  		  <topicName>imu</topicName>
 	  		  <gaussianNoise>0.00</gaussianNoise>
 	  		  <updateRate>45.0</updateRate>
 	  	  </plugin> -->
     </model>
-    <model name="pioneer3at_3">
+    <model name="hamster3at_3">
       <pose>3 1 0.3 0 0 0</pose>
       <!-- Shaft #1 -->
       <!-- <pose>8.5 -0.35 0.75 0 0 3.1415</pose> -->
@@ -1480,6 +1402,98 @@
         <kinematic>0</kinematic>
         <gravity>1</gravity>
       </link>
+      <link name="rplidar_link">
+        <pose>-0.045 0 0.095 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.035</radius>
+              <length>0.02</length>
+            </cylinder>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.035</radius>
+              <length>0.02</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <sensor name="rplidar" type="ray">
+          <ray>
+            <scan>
+              <horizontal>
+                <samples>360</samples>
+                <resolution>1</resolution>
+                <min_angle>-3.1415</min_angle>
+                <max_angle>3.1415</max_angle>
+              </horizontal>
+            </scan>
+            <range>
+              <min>0.10</min>
+              <max>6</max>
+              <resolution>0.01</resolution>
+            </range>
+            <noise>
+              <type>gaussian</type>
+              <mean>0.0</mean>
+              <stddev>0.01</stddev>
+            </noise>
+          </ray>
+          <plugin filename="libRayPlugin.so" name="laser"/>
+          <always_on>1</always_on>
+          <update_rate>6</update_rate>
+          <visualize>false</visualize>
+          <plugin filename="libgazebo_ros_laser.so" name="gazebo_ros_laser_controller">
+            <gaussianNoise>0.005</gaussianNoise>
+            <alwaysOn>true</alwaysOn>
+            <updateRate>6</updateRate>
+            <topicName>/hamster_3/scan_rplidar</topicName>
+            <frameName>/hamster_3/rplidar_link</frameName>
+            <hokuyoMinIntensity>101</hokuyoMinIntensity>
+          </plugin>
+        </sensor>
+      </link>
+      <link name="camera::link">
+        <pose>0.10 0.05 0.15 0 0 0</pose>
+        <inertial>
+          <mass>0.1</mass>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.01 0.01 0.01</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.01 0.01 0.01</size>
+            </box>
+          </geometry>
+        </visual>
+        <sensor name="camera" type="camera">
+          <camera>
+            <horizontal_fov>0.752</horizontal_fov>
+            <image>
+              <width>640</width>
+              <height>480</height>
+            </image>
+            <clip>
+              <near>0.1</near>
+              <far>100</far>
+            </clip>
+          </camera>
+          <always_on>1</always_on>
+          <update_rate>15</update_rate>
+          <visualize>false</visualize>
+          <plugin filename="libgazebo_ros_camera.so" name="ros_camera">
+            <robotNamespace>/hamster_3</robotNamespace>
+          </plugin>
+        </sensor>
+      </link>
       <joint name="shell_to_chassis" type="revolute">
         <pose>0 0 0 0 0 0</pose>
         <child>shell</child>
@@ -1540,102 +1554,9 @@
           </limit>
         </axis>
       </joint>
-      <link name="hokuyo::link">
-        <inertial>
-          <mass>0.1</mass>
-          <inertia>
-            <ixx>1</ixx>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyy>1</iyy>
-            <iyz>0</iyz>
-            <izz>1</izz>
-          </inertia>
-        </inertial>
-        <visual name="visual">
-          <geometry>
-            <mesh filename="package://mrm_sim/meshes/hokuyo.dae"/>
-          </geometry>
-        </visual>
-        <collision name="collision-base">
-          <pose>0 0 -0.0145 0 -0 0</pose>
-          <geometry>
-            <box>
-              <size>0.05 0.05 0.041</size>
-            </box>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <bounce/>
-            <friction>
-              <ode/>
-            </friction>
-            <contact>
-              <ode/>
-            </contact>
-          </surface>
-        </collision>
-        <collision name="collision-top">
-          <pose>0 0 0.0205 0 -0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.021</radius>
-              <length>0.029</length>
-            </cylinder>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <bounce/>
-            <friction>
-              <ode/>
-            </friction>
-            <contact>
-              <ode/>
-            </contact>
-          </surface>
-        </collision>
-        <sensor name="laser" type="ray">
-          <pose>0 0 0 0 -0 0</pose>
-          <ray>
-            <scan>
-              <horizontal>
-                <samples>1040</samples>
-                <resolution>1</resolution>
-                <min_angle>-2.26889</min_angle>
-                <max_angle>2.2689</max_angle>
-              </horizontal>
-            </scan>
-            <range>
-              <min>0.1</min>
-              <max>30</max>
-              <resolution>0.01</resolution>
-            </range>
-          </ray>
-          <!-- <plugin name='laser' filename='libRayPlugin.so'/> -->
-          <plugin filename="libgazebo_ros_laser.so" name="gazebo_ros_hokuyo_laser_controller">
-            <gaussianNoise>0.01</gaussianNoise>
-            <alwaysOn>true</alwaysOn>
-            <hokuyoMinIntensity>101</hokuyoMinIntensity>
-            <updateRate>40.0</updateRate>
-            <topicName>/pioneer_3/scan_raw</topicName>
-            <frameName>/pioneer_3/odom_tf__not_used__a</frameName>
-            <interface:laser/>
-          </plugin>
-          <always_on>1</always_on>
-          <update_rate>30</update_rate>
-          <visualize>1</visualize>
-        </sensor>
-        <velocity_decay>
-          <linear>0</linear>
-          <angular>0</angular>
-        </velocity_decay>
-        <pose>0.35 0 0.06 0 -0 0</pose>
-        <self_collide>0</self_collide>
-        <kinematic>0</kinematic>
-        <gravity>1</gravity>
-      </link>
-      <joint name="hokuyo_joint" type="revolute">
-        <child>hokuyo::link</child>
+      <joint name="rplidar_to_chassis" type="revolute">
+        <pose>0 0 0 0 0 0</pose>
+        <child>rplidar_link</child>
         <parent>chassis</parent>
         <axis>
           <xyz>0 0 1</xyz>
@@ -1645,46 +1566,8 @@
           </limit>
         </axis>
       </joint>
-      <link name="camera::link">
-        <pose>0.10 0.05 0.15 0 0 0</pose>
-        <inertial>
-          <mass>0.1</mass>
-        </inertial>
-        <collision name="collision">
-          <geometry>
-            <box>
-              <size>0.1 0.1 0.1</size>
-            </box>
-          </geometry>
-        </collision>
-        <visual name="visual">
-          <geometry>
-            <box>
-              <size>0.1 0.1 0.1</size>
-            </box>
-          </geometry>
-        </visual>
-        <sensor name="camera" type="camera">
-          <camera>
-            <horizontal_fov>0.752</horizontal_fov>
-            <image>
-              <width>640</width>
-              <height>480</height>
-            </image>
-            <clip>
-              <near>0.1</near>
-              <far>100</far>
-            </clip>
-          </camera>
-          <always_on>1</always_on>
-          <update_rate>15</update_rate>
-          <visualize>false</visualize>
-          <plugin filename="libgazebo_ros_camera.so" name="ros_camera">
-            <robotNamespace>/pioneer_3</robotNamespace>
-          </plugin>
-        </sensor>
-      </link>
       <joint name="camera_joint" type="revolute">
+        <pose>0 0 0 0 0 0</pose>
         <child>camera::link</child>
         <parent>chassis</parent>
         <axis>
@@ -1697,7 +1580,7 @@
       </joint>
       <plugin filename="libgazebo_ros_skid_steer_drive.so" name="skid_steer_drive_controller">
         <updateRate>100.0</updateRate>
-        <robotNamespace>/pioneer_3</robotNamespace>
+        <robotNamespace>/hamster_3</robotNamespace>
         <leftFrontJoint>left_front</leftFrontJoint>
         <rightFrontJoint>right_front</rightFrontJoint>
         <leftRearJoint>left_rear</leftRearJoint>
@@ -1705,20 +1588,20 @@
         <wheelSeparation>0.4</wheelSeparation>
         <wheelDiameter>0.215</wheelDiameter>
         <odometryTopic>odom_raw</odometryTopic>
-        <robotBaseFrame>/pioneer_3/odom_tf</robotBaseFrame>
+        <robotBaseFrame>/hamster_3/odom_tf</robotBaseFrame>
         <torque>120</torque>
         <commandTopic>cmd_vel</commandTopic>
         <broadcastTF>1</broadcastTF>
       </plugin>
       <!-- 	      <plugin filename="libgazebo_ros_imu.so" name="imu_en_ros">
 	  		  <bodyName>chassis</bodyName>
-	  		  <robotNamespace>/pioneer_${robot_id}</robotNamespace>
+	  		  <robotNamespace>/hamster_${robot_id}</robotNamespace>
 	  		  <topicName>imu</topicName>
 	  		  <gaussianNoise>0.00</gaussianNoise>
 	  		  <updateRate>45.0</updateRate>
 	  	  </plugin> -->
     </model>
-    <model name="pioneer3at_4">
+    <model name="hamster3at_4">
       <pose>1 2 0.3 0 0 0</pose>
       <!-- Shaft #1 -->
       <!-- <pose>8.5 -0.35 0.75 0 0 3.1415</pose> -->
@@ -2027,6 +1910,98 @@
         <kinematic>0</kinematic>
         <gravity>1</gravity>
       </link>
+      <link name="rplidar_link">
+        <pose>-0.045 0 0.095 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.035</radius>
+              <length>0.02</length>
+            </cylinder>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.035</radius>
+              <length>0.02</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <sensor name="rplidar" type="ray">
+          <ray>
+            <scan>
+              <horizontal>
+                <samples>360</samples>
+                <resolution>1</resolution>
+                <min_angle>-3.1415</min_angle>
+                <max_angle>3.1415</max_angle>
+              </horizontal>
+            </scan>
+            <range>
+              <min>0.10</min>
+              <max>6</max>
+              <resolution>0.01</resolution>
+            </range>
+            <noise>
+              <type>gaussian</type>
+              <mean>0.0</mean>
+              <stddev>0.01</stddev>
+            </noise>
+          </ray>
+          <plugin filename="libRayPlugin.so" name="laser"/>
+          <always_on>1</always_on>
+          <update_rate>6</update_rate>
+          <visualize>false</visualize>
+          <plugin filename="libgazebo_ros_laser.so" name="gazebo_ros_laser_controller">
+            <gaussianNoise>0.005</gaussianNoise>
+            <alwaysOn>true</alwaysOn>
+            <updateRate>6</updateRate>
+            <topicName>/hamster_4/scan_rplidar</topicName>
+            <frameName>/hamster_4/rplidar_link</frameName>
+            <hokuyoMinIntensity>101</hokuyoMinIntensity>
+          </plugin>
+        </sensor>
+      </link>
+      <link name="camera::link">
+        <pose>0.10 0.05 0.15 0 0 0</pose>
+        <inertial>
+          <mass>0.1</mass>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.01 0.01 0.01</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.01 0.01 0.01</size>
+            </box>
+          </geometry>
+        </visual>
+        <sensor name="camera" type="camera">
+          <camera>
+            <horizontal_fov>0.752</horizontal_fov>
+            <image>
+              <width>640</width>
+              <height>480</height>
+            </image>
+            <clip>
+              <near>0.1</near>
+              <far>100</far>
+            </clip>
+          </camera>
+          <always_on>1</always_on>
+          <update_rate>15</update_rate>
+          <visualize>false</visualize>
+          <plugin filename="libgazebo_ros_camera.so" name="ros_camera">
+            <robotNamespace>/hamster_4</robotNamespace>
+          </plugin>
+        </sensor>
+      </link>
       <joint name="shell_to_chassis" type="revolute">
         <pose>0 0 0 0 0 0</pose>
         <child>shell</child>
@@ -2087,102 +2062,9 @@
           </limit>
         </axis>
       </joint>
-      <link name="hokuyo::link">
-        <inertial>
-          <mass>0.1</mass>
-          <inertia>
-            <ixx>1</ixx>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyy>1</iyy>
-            <iyz>0</iyz>
-            <izz>1</izz>
-          </inertia>
-        </inertial>
-        <visual name="visual">
-          <geometry>
-            <mesh filename="package://mrm_sim/meshes/hokuyo.dae"/>
-          </geometry>
-        </visual>
-        <collision name="collision-base">
-          <pose>0 0 -0.0145 0 -0 0</pose>
-          <geometry>
-            <box>
-              <size>0.05 0.05 0.041</size>
-            </box>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <bounce/>
-            <friction>
-              <ode/>
-            </friction>
-            <contact>
-              <ode/>
-            </contact>
-          </surface>
-        </collision>
-        <collision name="collision-top">
-          <pose>0 0 0.0205 0 -0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.021</radius>
-              <length>0.029</length>
-            </cylinder>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <bounce/>
-            <friction>
-              <ode/>
-            </friction>
-            <contact>
-              <ode/>
-            </contact>
-          </surface>
-        </collision>
-        <sensor name="laser" type="ray">
-          <pose>0 0 0 0 -0 0</pose>
-          <ray>
-            <scan>
-              <horizontal>
-                <samples>1040</samples>
-                <resolution>1</resolution>
-                <min_angle>-2.26889</min_angle>
-                <max_angle>2.2689</max_angle>
-              </horizontal>
-            </scan>
-            <range>
-              <min>0.1</min>
-              <max>30</max>
-              <resolution>0.01</resolution>
-            </range>
-          </ray>
-          <!-- <plugin name='laser' filename='libRayPlugin.so'/> -->
-          <plugin filename="libgazebo_ros_laser.so" name="gazebo_ros_hokuyo_laser_controller">
-            <gaussianNoise>0.01</gaussianNoise>
-            <alwaysOn>true</alwaysOn>
-            <hokuyoMinIntensity>101</hokuyoMinIntensity>
-            <updateRate>40.0</updateRate>
-            <topicName>/pioneer_4/scan_raw</topicName>
-            <frameName>/pioneer_4/odom_tf__not_used__a</frameName>
-            <interface:laser/>
-          </plugin>
-          <always_on>1</always_on>
-          <update_rate>30</update_rate>
-          <visualize>1</visualize>
-        </sensor>
-        <velocity_decay>
-          <linear>0</linear>
-          <angular>0</angular>
-        </velocity_decay>
-        <pose>0.35 0 0.06 0 -0 0</pose>
-        <self_collide>0</self_collide>
-        <kinematic>0</kinematic>
-        <gravity>1</gravity>
-      </link>
-      <joint name="hokuyo_joint" type="revolute">
-        <child>hokuyo::link</child>
+      <joint name="rplidar_to_chassis" type="revolute">
+        <pose>0 0 0 0 0 0</pose>
+        <child>rplidar_link</child>
         <parent>chassis</parent>
         <axis>
           <xyz>0 0 1</xyz>
@@ -2192,46 +2074,8 @@
           </limit>
         </axis>
       </joint>
-      <link name="camera::link">
-        <pose>0.10 0.05 0.15 0 0 0</pose>
-        <inertial>
-          <mass>0.1</mass>
-        </inertial>
-        <collision name="collision">
-          <geometry>
-            <box>
-              <size>0.1 0.1 0.1</size>
-            </box>
-          </geometry>
-        </collision>
-        <visual name="visual">
-          <geometry>
-            <box>
-              <size>0.1 0.1 0.1</size>
-            </box>
-          </geometry>
-        </visual>
-        <sensor name="camera" type="camera">
-          <camera>
-            <horizontal_fov>0.752</horizontal_fov>
-            <image>
-              <width>640</width>
-              <height>480</height>
-            </image>
-            <clip>
-              <near>0.1</near>
-              <far>100</far>
-            </clip>
-          </camera>
-          <always_on>1</always_on>
-          <update_rate>15</update_rate>
-          <visualize>false</visualize>
-          <plugin filename="libgazebo_ros_camera.so" name="ros_camera">
-            <robotNamespace>/pioneer_4</robotNamespace>
-          </plugin>
-        </sensor>
-      </link>
       <joint name="camera_joint" type="revolute">
+        <pose>0 0 0 0 0 0</pose>
         <child>camera::link</child>
         <parent>chassis</parent>
         <axis>
@@ -2244,7 +2088,7 @@
       </joint>
       <plugin filename="libgazebo_ros_skid_steer_drive.so" name="skid_steer_drive_controller">
         <updateRate>100.0</updateRate>
-        <robotNamespace>/pioneer_4</robotNamespace>
+        <robotNamespace>/hamster_4</robotNamespace>
         <leftFrontJoint>left_front</leftFrontJoint>
         <rightFrontJoint>right_front</rightFrontJoint>
         <leftRearJoint>left_rear</leftRearJoint>
@@ -2252,20 +2096,20 @@
         <wheelSeparation>0.4</wheelSeparation>
         <wheelDiameter>0.215</wheelDiameter>
         <odometryTopic>odom_raw</odometryTopic>
-        <robotBaseFrame>/pioneer_4/odom_tf</robotBaseFrame>
+        <robotBaseFrame>/hamster_4/odom_tf</robotBaseFrame>
         <torque>120</torque>
         <commandTopic>cmd_vel</commandTopic>
         <broadcastTF>1</broadcastTF>
       </plugin>
       <!-- 	      <plugin filename="libgazebo_ros_imu.so" name="imu_en_ros">
 	  		  <bodyName>chassis</bodyName>
-	  		  <robotNamespace>/pioneer_${robot_id}</robotNamespace>
+	  		  <robotNamespace>/hamster_${robot_id}</robotNamespace>
 	  		  <topicName>imu</topicName>
 	  		  <gaussianNoise>0.00</gaussianNoise>
 	  		  <updateRate>45.0</updateRate>
 	  	  </plugin> -->
     </model>
-    <model name="pioneer3at_5">
+    <model name="hamster3at_5">
       <pose>2 2 0.3 0 0 0</pose>
       <!-- Shaft #1 -->
       <!-- <pose>8.5 -0.35 0.75 0 0 3.1415</pose> -->
@@ -2574,6 +2418,98 @@
         <kinematic>0</kinematic>
         <gravity>1</gravity>
       </link>
+      <link name="rplidar_link">
+        <pose>-0.045 0 0.095 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.035</radius>
+              <length>0.02</length>
+            </cylinder>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.035</radius>
+              <length>0.02</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <sensor name="rplidar" type="ray">
+          <ray>
+            <scan>
+              <horizontal>
+                <samples>360</samples>
+                <resolution>1</resolution>
+                <min_angle>-3.1415</min_angle>
+                <max_angle>3.1415</max_angle>
+              </horizontal>
+            </scan>
+            <range>
+              <min>0.10</min>
+              <max>6</max>
+              <resolution>0.01</resolution>
+            </range>
+            <noise>
+              <type>gaussian</type>
+              <mean>0.0</mean>
+              <stddev>0.01</stddev>
+            </noise>
+          </ray>
+          <plugin filename="libRayPlugin.so" name="laser"/>
+          <always_on>1</always_on>
+          <update_rate>6</update_rate>
+          <visualize>false</visualize>
+          <plugin filename="libgazebo_ros_laser.so" name="gazebo_ros_laser_controller">
+            <gaussianNoise>0.005</gaussianNoise>
+            <alwaysOn>true</alwaysOn>
+            <updateRate>6</updateRate>
+            <topicName>/hamster_5/scan_rplidar</topicName>
+            <frameName>/hamster_5/rplidar_link</frameName>
+            <hokuyoMinIntensity>101</hokuyoMinIntensity>
+          </plugin>
+        </sensor>
+      </link>
+      <link name="camera::link">
+        <pose>0.10 0.05 0.15 0 0 0</pose>
+        <inertial>
+          <mass>0.1</mass>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.01 0.01 0.01</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.01 0.01 0.01</size>
+            </box>
+          </geometry>
+        </visual>
+        <sensor name="camera" type="camera">
+          <camera>
+            <horizontal_fov>0.752</horizontal_fov>
+            <image>
+              <width>640</width>
+              <height>480</height>
+            </image>
+            <clip>
+              <near>0.1</near>
+              <far>100</far>
+            </clip>
+          </camera>
+          <always_on>1</always_on>
+          <update_rate>15</update_rate>
+          <visualize>false</visualize>
+          <plugin filename="libgazebo_ros_camera.so" name="ros_camera">
+            <robotNamespace>/hamster_5</robotNamespace>
+          </plugin>
+        </sensor>
+      </link>
       <joint name="shell_to_chassis" type="revolute">
         <pose>0 0 0 0 0 0</pose>
         <child>shell</child>
@@ -2634,102 +2570,9 @@
           </limit>
         </axis>
       </joint>
-      <link name="hokuyo::link">
-        <inertial>
-          <mass>0.1</mass>
-          <inertia>
-            <ixx>1</ixx>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyy>1</iyy>
-            <iyz>0</iyz>
-            <izz>1</izz>
-          </inertia>
-        </inertial>
-        <visual name="visual">
-          <geometry>
-            <mesh filename="package://mrm_sim/meshes/hokuyo.dae"/>
-          </geometry>
-        </visual>
-        <collision name="collision-base">
-          <pose>0 0 -0.0145 0 -0 0</pose>
-          <geometry>
-            <box>
-              <size>0.05 0.05 0.041</size>
-            </box>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <bounce/>
-            <friction>
-              <ode/>
-            </friction>
-            <contact>
-              <ode/>
-            </contact>
-          </surface>
-        </collision>
-        <collision name="collision-top">
-          <pose>0 0 0.0205 0 -0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.021</radius>
-              <length>0.029</length>
-            </cylinder>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <bounce/>
-            <friction>
-              <ode/>
-            </friction>
-            <contact>
-              <ode/>
-            </contact>
-          </surface>
-        </collision>
-        <sensor name="laser" type="ray">
-          <pose>0 0 0 0 -0 0</pose>
-          <ray>
-            <scan>
-              <horizontal>
-                <samples>1040</samples>
-                <resolution>1</resolution>
-                <min_angle>-2.26889</min_angle>
-                <max_angle>2.2689</max_angle>
-              </horizontal>
-            </scan>
-            <range>
-              <min>0.1</min>
-              <max>30</max>
-              <resolution>0.01</resolution>
-            </range>
-          </ray>
-          <!-- <plugin name='laser' filename='libRayPlugin.so'/> -->
-          <plugin filename="libgazebo_ros_laser.so" name="gazebo_ros_hokuyo_laser_controller">
-            <gaussianNoise>0.01</gaussianNoise>
-            <alwaysOn>true</alwaysOn>
-            <hokuyoMinIntensity>101</hokuyoMinIntensity>
-            <updateRate>40.0</updateRate>
-            <topicName>/pioneer_5/scan_raw</topicName>
-            <frameName>/pioneer_5/odom_tf__not_used__a</frameName>
-            <interface:laser/>
-          </plugin>
-          <always_on>1</always_on>
-          <update_rate>30</update_rate>
-          <visualize>1</visualize>
-        </sensor>
-        <velocity_decay>
-          <linear>0</linear>
-          <angular>0</angular>
-        </velocity_decay>
-        <pose>0.35 0 0.06 0 -0 0</pose>
-        <self_collide>0</self_collide>
-        <kinematic>0</kinematic>
-        <gravity>1</gravity>
-      </link>
-      <joint name="hokuyo_joint" type="revolute">
-        <child>hokuyo::link</child>
+      <joint name="rplidar_to_chassis" type="revolute">
+        <pose>0 0 0 0 0 0</pose>
+        <child>rplidar_link</child>
         <parent>chassis</parent>
         <axis>
           <xyz>0 0 1</xyz>
@@ -2739,46 +2582,8 @@
           </limit>
         </axis>
       </joint>
-      <link name="camera::link">
-        <pose>0.10 0.05 0.15 0 0 0</pose>
-        <inertial>
-          <mass>0.1</mass>
-        </inertial>
-        <collision name="collision">
-          <geometry>
-            <box>
-              <size>0.1 0.1 0.1</size>
-            </box>
-          </geometry>
-        </collision>
-        <visual name="visual">
-          <geometry>
-            <box>
-              <size>0.1 0.1 0.1</size>
-            </box>
-          </geometry>
-        </visual>
-        <sensor name="camera" type="camera">
-          <camera>
-            <horizontal_fov>0.752</horizontal_fov>
-            <image>
-              <width>640</width>
-              <height>480</height>
-            </image>
-            <clip>
-              <near>0.1</near>
-              <far>100</far>
-            </clip>
-          </camera>
-          <always_on>1</always_on>
-          <update_rate>15</update_rate>
-          <visualize>false</visualize>
-          <plugin filename="libgazebo_ros_camera.so" name="ros_camera">
-            <robotNamespace>/pioneer_5</robotNamespace>
-          </plugin>
-        </sensor>
-      </link>
       <joint name="camera_joint" type="revolute">
+        <pose>0 0 0 0 0 0</pose>
         <child>camera::link</child>
         <parent>chassis</parent>
         <axis>
@@ -2791,7 +2596,7 @@
       </joint>
       <plugin filename="libgazebo_ros_skid_steer_drive.so" name="skid_steer_drive_controller">
         <updateRate>100.0</updateRate>
-        <robotNamespace>/pioneer_5</robotNamespace>
+        <robotNamespace>/hamster_5</robotNamespace>
         <leftFrontJoint>left_front</leftFrontJoint>
         <rightFrontJoint>right_front</rightFrontJoint>
         <leftRearJoint>left_rear</leftRearJoint>
@@ -2799,14 +2604,14 @@
         <wheelSeparation>0.4</wheelSeparation>
         <wheelDiameter>0.215</wheelDiameter>
         <odometryTopic>odom_raw</odometryTopic>
-        <robotBaseFrame>/pioneer_5/odom_tf</robotBaseFrame>
+        <robotBaseFrame>/hamster_5/odom_tf</robotBaseFrame>
         <torque>120</torque>
         <commandTopic>cmd_vel</commandTopic>
         <broadcastTF>1</broadcastTF>
       </plugin>
       <!-- 	      <plugin filename="libgazebo_ros_imu.so" name="imu_en_ros">
 	  		  <bodyName>chassis</bodyName>
-	  		  <robotNamespace>/pioneer_${robot_id}</robotNamespace>
+	  		  <robotNamespace>/hamster_${robot_id}</robotNamespace>
 	  		  <topicName>imu</topicName>
 	  		  <gaussianNoise>0.00</gaussianNoise>
 	  		  <updateRate>45.0</updateRate>
