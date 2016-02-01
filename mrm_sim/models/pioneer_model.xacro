@@ -470,14 +470,14 @@
 		<collision name="collision">
 		  <geometry>
 		    <box>
-		      <size>0.01 0.01 0.01</size>
+		      <size>0.001 0.001 0.001</size>
 		    </box>
 		  </geometry>
 		</collision>
 		<visual name="visual">
 		  <geometry>
 		    <box>
-		      <size>0.01 0.01 0.01</size>
+		      <size>0.001 0.001 0.001</size>
 		    </box>
 		  </geometry>
 		</visual>
