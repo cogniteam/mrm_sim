@@ -2,7 +2,7 @@
   
   	<!-- Parameters ====================================================== -->
 
-	<arg name="robots_count" default="10" />
+	<arg name="robots_count" default="5" />
 	<arg name="laser_forward_offset" default="0.35" />
 
 	<param name="/robots_count" value="$(arg robots_count)" />

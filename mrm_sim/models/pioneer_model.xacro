@@ -112,7 +112,7 @@
 	        <collision name='collision'>
 	          <geometry>
 	            <box>
-	              <size>0.185 0.1 0.03</size>
+	              <size>0.185 0.1 0.02</size>
 	            </box>
 	          </geometry>
 	          <max_contacts>10</max_contacts>
@@ -128,9 +128,6 @@
 	        </collision>
 	        <visual name='visual'>
 	          <geometry>
-<!--	            <mesh>
-	              <uri>$(find mrm_sim)/meshes/chassis.dae</uri>
-	            </mesh>-->
 		    <box>
 	              <size>0.185 0.1 0.03</size>
 	            </box>
@@ -144,6 +141,56 @@
 	        <kinematic>0</kinematic>
 	        <gravity>1</gravity>
 	      </link>
+	      
+	      
+	      
+	      <link name='shell'>
+		<pose>0.005 0 -0.01 0 0 0</pose>
+	        <inertial>
+	          <mass>1</mass>
+	          <inertia>
+	            <ixx>0.3338</ixx>
+	            <ixy>0</ixy>
+	            <ixz>0</ixz>
+	            <iyy>0.4783</iyy>
+	            <iyz>0</iyz>
+	            <izz>0.3338</izz>
+	          </inertia>
+	        </inertial>
+	        <collision name='collision'>
+	          <geometry>
+		    <box>
+	              <size>0.25 0.2 0.08</size>
+	            </box>
+		  </geometry>
+	          <max_contacts>10</max_contacts>
+	          <surface>
+	            <bounce/>
+	            <friction>
+	              <ode/>
+	            </friction>
+	            <contact>
+	              <ode/>
+	            </contact>
+	          </surface>
+	        </collision>
+	        <visual name='visual'>
+	          <geometry>
+	            <mesh>
+		      <scale>1 1 1</scale>
+	              <uri>$(find mrm_sim)/meshes/shell.dae</uri>
+	            </mesh>
+	          </geometry>
+	        </visual>
+	        <velocity_decay>
+	          <linear>0</linear>
+	          <angular>0</angular>
+	        </velocity_decay>
+	        <self_collide>0</self_collide>
+	        <kinematic>0</kinematic>
+	        <gravity>1</gravity>
+	      </link>
+	      
 	      
 	      
 	      
@@ -359,6 +406,20 @@
 	        <kinematic>0</kinematic>
 	        <gravity>1</gravity>
 	      </link>
+	      
+
+	      <joint name='shell_to_chassis' type='revolute'>
+	        <pose>0 0 0 0 0 0</pose>
+	        <child>shell</child>
+	        <parent>chassis</parent>
+	        <axis>
+	          <xyz>0 1 0</xyz>
+	          <limit>
+	            <lower>0</lower>
+	            <upper>0</upper>
+	          </limit>
+	        </axis>
+	      </joint>
 	      
 	      
 	      <joint name='right_front' type='revolute'>
